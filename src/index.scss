@@ -1,0 +1,33 @@
+@import "./components/CharacterDetailCard/styles.scss";
+@import "./components/CharacterList/styles.scss";
+@import "./components/CircularLoading/styles.scss";
+@import "./components/EpisodeList/styles.scss";
+@import "./components/FavoriteButton/styles.scss";
+@import "./components/LocationCard/styles.scss";
+@import "./components/Navbar/styles.scss";
+@import "./components/Navbar/Search/styles.scss";
+@import "./components/Title/styles.scss";
+
+@import "./pages/CharacterDetails/styles.scss";
+@import "./pages/Characters/styles.scss";
+@import "./pages/EpisodeCharacters/styles.scss";
+@import "./pages/EpisodeDetails/styles.scss";
+@import "./pages/Episodes/styles.scss";
+@import "./pages/Favorites/styles.scss";
+@import "./pages/Home/styles.scss";
+@import "./pages/SearchResults/styles.scss";
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
