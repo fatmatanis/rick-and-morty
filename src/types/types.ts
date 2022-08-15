@@ -1,3 +1,3 @@
 export interface INavbarProps {
-  styleName: string;
+  className: string;
 }
