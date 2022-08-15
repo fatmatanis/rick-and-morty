@@ -1,18 +1,18 @@
 import React from "react";
 
-import Search from "./Search";
+import Search from "./_search";
 import digieggs from "../../assets/digieggs.svg";
 import star from "../../assets/star.svg";
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className="nav">
       <div className="navbar">
         <img className="logo" src={digieggs} alt="logo" />
-        <Search />
+        <Search styleName="search" />
         <div className="favorites">
           <img src={star} alt="favorites" className="favorites-icon" />
-          <p>Favorites</p>
+          <p className="favorite-text">Favorites</p>
         </div>
       </div>
     </nav>
