@@ -1,0 +1,55 @@
+input {
+    width: 69%;
+    border: 1px solid transparent;
+    height: 56px;
+    border-radius: 8px;
+    border: none;
+    padding: 16px 24px 16px 68px;
+    color: $black;
+    transition: padding 0.3s ease-in-out;
+    background: white url(../../../assets/search.svg) no-repeat 24px center;
+    @include typography(16px, 400, 19px);
+
+    &:hover {
+        outline: 1px solid $darkgray;
+    }
+
+    &:focus {
+        outline: 1px solid $green;
+        background: white url(../../../assets/activeSearch.svg) no-repeat 8px center;
+        padding-left: 84px;
+    }
+
+}
+
+::placeholder {
+    @include typography(16px, 700, 19px);
+    color: $lightgray;
+}
+
+input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    content: url(../../../assets/close.svg);
+    cursor: pointer;
+}
+
+@media (max-width: $breakpoint-md) {
+    input {
+        width: calc(100% - 32px);
+        position: absolute;
+        margin-top: 160px;
+        background-color: $gray;
+    
+    &:focus {
+        outline: 1px solid $green;
+        background: $gray url(../../../assets/search.svg) no-repeat 24px center;
+        padding-left: 68px;
+    }
+}
+}
+
+@media (max-width: $breakpoint-sm) {
+    input {
+        margin-top: 144px;
+    }
+}
