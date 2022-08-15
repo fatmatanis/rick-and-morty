@@ -1,0 +1,106 @@
+.nav {
+    width: 100%;
+    margin: 0;
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $gray;
+}
+
+.navbar {
+    width: calc(100% - 32px);
+    max-width: 1120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    flex-direction: row;
+    gap: 36px;
+    box-sizing: border-box;
+}
+
+.favorites {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+
+    .favorites-icon {
+        align-items: center;
+        margin: auto;
+    }
+
+    .favorite-text {
+        margin: 0;
+        padding-top: 8px;
+        color: #808080;
+        @include typography(14px, 700, 19px)
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .nav {
+        padding: 0;
+
+        .logo {
+            width: 103px;
+            padding: 28px 0;
+        }
+    }
+
+    .favorite-text {
+        display: none;
+    }
+}
+
+.search {
+    width: 69%;
+    border: 1px solid transparent;
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    padding: 16px 24px 16px 68px;
+    color: $black;
+    transition: padding 0.3s ease-in-out;
+    background: white url(../../assets/search.svg) no-repeat 24px center;
+    @include typography(16px, 400, 19px);
+
+    &:hover {
+        outline: 1px solid $darkgray;
+    }
+
+    &:focus {
+        outline: 1px solid $green;
+        background: white url(../../assets/activeSearch.svg) no-repeat 8px center;
+        padding-left: 84px;
+    }
+
+}
+
+::placeholder {
+    @include typography(16px, 700, 19px);
+    color: $lightgray;
+}
+
+.search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    content: url(../../assets/close.svg);
+    cursor: pointer;
+}
+
+@media (max-width: $breakpoint-md) {
+    .search {
+        width: calc(100% - 32px);
+        position: absolute;
+        margin-top: 160px;
+        background-color: $gray;
+    
+    &:focus {
+        outline: 1px solid $green;
+        background: $gray url(../../assets/search.svg) no-repeat 24px center;
+        padding-left: 68px;
+    }
+}
+}
