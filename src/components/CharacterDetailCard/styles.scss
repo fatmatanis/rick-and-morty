@@ -1,0 +1,24 @@
+.character-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    margin: 32px;
+    gap: 10px;
+    background-color: $darkgreen;
+    width: 100%;
+    max-width: 368px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    .character-detail-title {
+        @include typography (12px, 700, 15px);
+        color: white;
+    }
+
+
+    .character-detail-text {
+        @include typography (20px, 400, 24px);
+        color: white;
+    }
+}
