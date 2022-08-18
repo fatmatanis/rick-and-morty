@@ -12,7 +12,7 @@
 
     &:hover {
         background: white;
-        box-shadow: -8px 11px 53px $shadow;
+        box-shadow: $boxShadow;
     }
 
     &:active {
