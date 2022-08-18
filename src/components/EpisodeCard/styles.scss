@@ -1,0 +1,49 @@
+.episode-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    border-radius: 8px;
+    background: $gray;
+    max-width: 368px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.episode-card-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.episode-card-season {
+    @include typography(13px, 700, 19px);
+    color: $black;
+    padding: 2px;
+    background-color: $green;
+    gap: 8px;
+    width: 38%;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.episode-card-date {
+    @include typography(14px, 400, 17px);
+    color: $dovegray;
+}
+
+.episode-card-star-icon {
+    margin-left: auto;
+}
+
+.episode-card-title {
+    @include typography(16px, 700, 19px);
+    color: $black;
+    margin-bottom: 8px;
+}
+
+.episode-card-description {
+    @include typography(16px, 400, 19px);
+    color: $dovegray;
+}
