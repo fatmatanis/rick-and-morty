@@ -9,41 +9,67 @@
     max-width: 368px;
     width: 100%;
     box-sizing: border-box;
+
+    &:hover {
+        background: white;
+        box-shadow: -8px 11px 53px $shadow;
+    }
+
+    &:active {
+        background: $active;
+    }
 }
 
 .episode-card-container {
     display: flex;
-    width: 100%;
-    align-items: center;
+    flex-direction: row-reverse;
+    align-items: flex-start;
 }
 
-.episode-card-season {
-    @include typography(13px, 700, 19px);
-    color: $black;
-    padding: 2px;
-    background-color: $green;
-    gap: 8px;
-    width: 38%;
-    border-radius: 4px;
-    margin-bottom: 6px;
+.episode-card-link {
+    text-decoration: none;
 }
 
-.episode-card-date {
-    @include typography(14px, 400, 17px);
-    color: $dovegray;
+.episode-card-top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    .episode-card-season {
+        @include typography(13px, 700, 19px);
+        color: $black;
+        padding: 2px;
+        background-color: $green;
+        gap: 8px;
+        width: fit-content;
+        border-radius: 4px;
+        margin-bottom: 6px;
+    }
+
+    .episode-card-date {
+        @include typography(14px, 400, 17px);
+        color: $dovegray;
+    }
 }
 
-.episode-card-star-icon {
-    margin-left: auto;
+.episode-card-favorite-button {
+    all: unset;
+    border: none;
+    padding: 8px 0;
 }
 
-.episode-card-title {
-    @include typography(16px, 700, 19px);
-    color: $black;
-    margin-bottom: 8px;
-}
+.episode-card-bottom {
+    display: flex;
+    flex-direction: column;
 
-.episode-card-description {
-    @include typography(16px, 400, 19px);
-    color: $dovegray;
+    .episode-card-title {
+        @include typography(16px, 700, 19px);
+        color: $black;
+        margin-bottom: 8px;
+    }
+
+    .episode-card-description {
+        @include typography(16px, 400, 19px);
+        color: $dovegray;
+    }
 }

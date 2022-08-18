@@ -1,27 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import star from "../../assets/star.svg";
+import { ReactComponent as Star } from "../../assets/star.svg";
+import { IEpisodeCardProps } from "../../types/types";
 
-const EpisodeCard = () => {
+const EpisodeCard = ({
+  id,
+  season,
+  date,
+  title,
+  description
+}: IEpisodeCardProps) => {
   return (
     <div className="episode-card">
       <div className="episode-card-container">
-        <div className="episode-card-box">
-          <div className="episode-card-season">S2.E10</div>
-          <div className="episode-card-date">Fri, July 32, 2020</div>
-        </div>
-        <img
-          className="episode-card-star-icon"
-          src={star}
-          alt="star-icon"
-        ></img>
-      </div>
-      <div>
-        <div className="episode-card-title">The End of Something</div>
-        <div className="episode-card-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore...
-        </div>
+        <button className="episode-card-favorite-button">
+          <Star />
+        </button>
+        <Link className="episode-card-link" to={`/episodes/${id}`}>
+          <div className="episode-card-top">
+            <span className="episode-card-season">{season}</span>
+            <span className="episode-card-date">{date}</span>
+          </div>
+          <div className="episode-card-bottom">
+            <span className="episode-card-title">{title}</span>
+            <span className="episode-card-description">{description}</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

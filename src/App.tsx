@@ -1,11 +1,11 @@
 import React from "react";
-import EpisodeCard from "./components/EpisodeCard";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <EpisodeCard />
-    </div>
+    <BrowserRouter>
+      <div></div>
+    </BrowserRouter>
   );
 }
 
