@@ -12,3 +12,11 @@ export interface ITitleCountProps {
   text: string;
   count: number;
 }
+
+export interface IEpisodeCardProps {
+  id: number;
+  season: string;
+  date: string;
+  title: string;
+  description: string;
+}
