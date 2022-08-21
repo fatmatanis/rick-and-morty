@@ -20,3 +20,11 @@ export interface IEpisodeCardProps {
   title: string;
   description: string;
 }
+
+export interface ICharacterCardProps {
+  id: number;
+  image: string;
+  name: string;
+  origin: string;
+  species: string;
+}

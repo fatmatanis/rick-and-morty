@@ -1,17 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CharacterCard = () => {
+import { ICharacterCardProps } from "../../types/types";
+
+const CharacterCard = ({
+  id,
+  image,
+  name,
+  origin,
+  species
+}: ICharacterCardProps) => {
   return (
     <div className="character-card">
-      <Link to="/" className="character-card-link">
+      <Link to={`/characters/${id}`} className="character-card-link">
         <div className="character-card-image-wrapper">
-          <img className="character-card-image" src="" alt="" />
-          <span className="character-card-origin">Origin</span>
-          <span className="character-card-species">Spacies</span>
+          <img className="character-card-image" src={image} alt={name} />
+          <span className="character-card-origin">{origin}</span>
+          <span className="character-card-species">{species}</span>
         </div>
       </Link>
-      <span className="character-card-name">Rick Sanchez</span>
+      <span className="character-card-name">{name}</span>
     </div>
   );
 };
