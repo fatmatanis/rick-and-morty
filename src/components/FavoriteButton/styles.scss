@@ -1,0 +1,34 @@
+.favorite-button-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+}
+
+.favorite-button-text {
+    @include typography(16px, 700, 19px)
+}
+
+.black {
+
+    .favorite-button-text {
+        color: $black;
+    }
+
+    .favorite-star path{
+        stroke: $black;
+    }
+}
+
+.green {
+
+    .favorite-button-text {
+        color: $green;
+    }
+
+    .favorite-star path {
+        stroke: $green;
+    }
+
+}

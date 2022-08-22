@@ -21,6 +21,10 @@ export interface IEpisodeCardProps {
   description: string;
 }
 
+export interface IFavoriteButtonProps {
+  favStyle: string;
+}
+
 export interface ICharacterCardProps {
   id: number;
   image: string;
