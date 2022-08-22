@@ -20,3 +20,7 @@ export interface IEpisodeCardProps {
   title: string;
   description: string;
 }
+
+export interface IFavoriteButtonProps {
+  favStyle: string;
+}
