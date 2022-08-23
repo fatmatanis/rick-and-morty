@@ -1,0 +1,79 @@
+.character-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    gap: 16px;
+}
+
+.character-card-link {
+    text-decoration: none;
+    @include typography(12px, 700, 15px);
+    border-radius: 8px;
+}
+
+.character-card-image-wrapper {
+    position: relative;
+
+    .character-card-image {
+        border-radius: 8px;
+        object-fit: cover;
+        margin-bottom: -4px;
+    }
+
+    .character-card-origin {
+        color: $black;
+        padding: 4px 8px;
+        background: $green;
+        border-radius: 8px;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .character-card-species {
+        color: $black;
+        padding: 4px 8px;
+        background: $green;
+        border-radius: 8px;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    &:hover {
+        box-shadow: $boxShadow;
+        
+        .character-card-origin,
+        .character-card-species {
+            opacity: 1;
+        }
+
+        .character-card-image {
+            filter: contrast(90%) grayscale(5%);
+        }
+    }
+
+    &:active {
+        box-shadow: none;
+        
+        .character-card-origin,
+        .character-card-species {
+            opacity: 0;
+        }
+
+        .character-card-image {
+            filter: none;
+        }
+    }
+}
+
+.character-card-name {
+    @include typography(16px, 400, 19px);
+    margin-top: 2px;
+}
