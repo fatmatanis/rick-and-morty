@@ -32,3 +32,7 @@ export interface ICharacterCardProps {
   origin: string;
   species: string;
 }
+
+export interface INavigationProps {
+  colorStyles: string;
+}

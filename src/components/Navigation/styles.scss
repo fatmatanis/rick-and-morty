@@ -1,0 +1,53 @@
+.navigation-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+
+    .navigation-link {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        @include typography(16px, 700, 24px);
+
+        &:hover {
+            color: $darkgray;
+        }
+
+        &:active {
+            color: $khaki;
+        }
+    }
+
+    .black {
+        color: $black;
+
+        .navigation-icon path {
+            stroke: $black;
+        }
+    }
+
+    .white {
+        color: white;
+
+        .navigation-icon path {
+            stroke: white;
+        }
+    } 
+
+    .navigation-icon {
+    &:hover path {
+        stroke: $darkgray;
+    }
+
+    &:active path {
+        stroke: $khaki;
+    }
+}
+}
