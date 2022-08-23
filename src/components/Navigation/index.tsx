@@ -41,11 +41,7 @@ const Navigation = ({ colorStyles }: INavigationProps) => {
       </Link>
     </div>
   ));
-  return (
-    <div className="c">
-      <div className="navigation">{characterArray}</div>{" "}
-    </div>
-  );
+  return <div className="navigation">{characterArray}</div>;
 };
 
 export default Navigation;
