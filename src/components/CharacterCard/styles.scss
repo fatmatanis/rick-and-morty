@@ -16,10 +16,12 @@
 .character-card-image-wrapper {
     position: relative;
 
-    .character-card-image {
+    .character-card-image img {
         border-radius: 8px;
         object-fit: cover;
         margin-bottom: -4px;
+        max-width: 270px;
+        height: 100%;
     }
 
     .character-card-origin {
@@ -48,7 +50,7 @@
 
     &:hover {
         box-shadow: $boxShadow;
-        
+
         .character-card-origin,
         .character-card-species {
             opacity: 1;
@@ -61,7 +63,7 @@
 
     &:active {
         box-shadow: none;
-        
+
         .character-card-origin,
         .character-card-species {
             opacity: 0;
@@ -76,4 +78,34 @@
 .character-card-name {
     @include typography(16px, 400, 19px);
     margin-top: 2px;
+}
+
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    .character-card-image-wrapper {
+        .character-card-image {
+            img {
+                max-width: 298px;
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    .character-card-image-wrapper {
+        .character-card-image {
+            img {
+                max-width: 252px;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-xs) {
+    .character-card-image-wrapper {
+        .character-card-image {
+            img {
+                max-width: 124px;
+            }
+        }
+    }
 }
