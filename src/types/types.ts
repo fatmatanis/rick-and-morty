@@ -36,3 +36,14 @@ export interface ICharacterCardProps {
 export interface INavigationProps {
   colorStyles: string;
 }
+
+interface ISelectedFilter {
+  label: string;
+  value: string;
+  handleSelect: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ISelectprops {
+  options: ISelectedFilter[];
+  filtred: string;
+}
