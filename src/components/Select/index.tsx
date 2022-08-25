@@ -4,7 +4,7 @@ import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import useComponentOpen from "../../hooks/useComponentOpen";
 import { ISelectprops } from "../../types/types";
 
-const Select = ({ options, filtred }: ISelectprops) => {
+const Select = ({ options, filtered }: ISelectprops) => {
   const { ref, isOpen, setIsOpen } = useComponentOpen(true);
 
   const handleOpen = () => {
@@ -14,7 +14,7 @@ const Select = ({ options, filtred }: ISelectprops) => {
   return (
     <div className="select-wrapper" ref={ref}>
       <button className="select-button" onClick={handleOpen}>
-        {filtred}
+        {filtered}
         <ArrowDown className={`select-arrow ${isOpen && "arrow-up"}`} />
       </button>
       <div className={`select-items-container ${isOpen && "select-show"}`}>

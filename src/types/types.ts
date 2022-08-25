@@ -77,5 +77,5 @@ interface ISelectedFilter {
 
 export interface ISelectprops {
   options: ISelectedFilter[];
-  filtred: string;
+  filtered: string;
 }
