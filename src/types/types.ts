@@ -68,3 +68,14 @@ export interface IEpisode {
   episode: string;
   characters: ICharacter[];
 }
+
+interface ISelectedFilter {
+  label: string;
+  value: string;
+  handleSelect: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ISelectprops {
+  options: ISelectedFilter[];
+  filtered: string;
+}
