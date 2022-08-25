@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 
 import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
+import useComponentOpen from "../../hooks/useComponentOpen";
 import { ISelectprops } from "../../types/types";
 
 const Select = ({ options, filtred }: ISelectprops) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { ref, isOpen, setIsOpen } = useComponentOpen(true);
 
   const handleOpen = () => {
     setIsOpen(isOpen => !isOpen);
   };
 
-  const close = () => {
-    setTimeout(() => setIsOpen(false), 250);
-  };
-
   return (
-    <div className="select-wrapper">
-      <button className="select-button" onClick={handleOpen} onBlur={close}>
+    <div className="select-wrapper" ref={ref}>
+      <button className="select-button" onClick={handleOpen}>
         {filtred}
         <ArrowDown className={`select-arrow ${isOpen && "arrow-up"}`} />
       </button>
