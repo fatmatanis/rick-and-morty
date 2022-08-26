@@ -79,3 +79,9 @@ export interface ISelectprops {
   options: ISelectedFilter[];
   filtered: string;
 }
+
+export interface ILocationCardProps {
+  name: string;
+  type: string;
+  dimension: string;
+}

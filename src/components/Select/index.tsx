@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import useComponentOpen from "../../hooks/useComponentOpen";
+import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import { ISelectprops } from "../../types/types";
 
 const Select = ({ options, filtered }: ISelectprops) => {

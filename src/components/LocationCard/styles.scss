@@ -1,13 +1,55 @@
 .location-card-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 16px;
     gap: 10px;
     border-radius: 8px;
     background: $gray;
-    width: 100%;
-    max-width: 368px;
+    width: calc(33.33% - 26px);
     box-sizing: border-box;
     border: 1px solid $gray;
+}
+
+.location-card-container {
+    display: flex;
+    align-items: center;
+}
+
+.location-name {
+    
+    @include typography(16px, 700, 19px);
+    margin-left: 8px;
+}
+
+.location-type {
+    @include typography(12px, 700, 15px);
+    color: $dark;
+    padding: 4px 8px;
+    gap: 10px;
+    background: $green;
+    border-radius: 4px;
+    margin-left: auto
+}
+
+.location-dimension {
+    @include typography(14px, 400, 17px);
+    color: $dovegray;
+}
+
+@media (max-width: $breakpoint-lg) {
+    .location-card-wrapper {
+        width: calc(50% - 16px);
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .location-card-wrapper {
+        width: calc(50% - 16px);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .location-card-wrapper {
+        width: 100%;
+    }
 }
