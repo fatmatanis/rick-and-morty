@@ -1,7 +1,7 @@
 .nav {
     width: 100%;
     margin: 0;
-    padding: 16px 0;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,7 +20,9 @@
     box-sizing: border-box;
 }
 
-.favorites {
+.favorite-link {
+
+    text-decoration: none;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -34,8 +36,27 @@
     .favorite-text {
         margin: 0;
         padding-top: 8px;
-        color: #808080;
-        @include typography(14px, 700, 19px)
+        color: $darkgray;
+        @include typography(14px, 700, 19px);
+        
+    }
+    
+    &:hover {
+       .favorite-text { 
+        color: $black;
+       }
+       .favorites-icon path {
+        stroke: $black;
+       }
+    }
+
+    &:active {
+        .favorite-text { 
+            color: $khaki;
+           }
+           .favorites-icon path {
+            stroke: $khaki;
+           }
     }
 }
 
@@ -45,7 +66,7 @@
 
         .logo {
             width: 103px;
-            padding: 28px 0;
+            padding: 24px 0;
         }
     }
 
@@ -94,13 +115,13 @@
     .search {
         width: calc(100% - 32px);
         position: absolute;
-        margin-top: 160px;
+        margin-top: 174px;
         background-color: $gray;
-    
-    &:focus {
-        outline: 1px solid $green;
-        background: $gray url(../../assets/search.svg) no-repeat 24px center;
-        padding-left: 68px;
+
+        &:focus {
+            outline: 1px solid $green;
+            background: $gray url(../../assets/search.svg) no-repeat 24px center;
+            padding-left: 68px;
+        }
     }
-}
 }
