@@ -1,20 +1,30 @@
 .home-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    margin: 18px 24px;
+    justify-content: center;
 }
 
 .home-container {
     display: flex;
     flex-direction: column;
-    gap: 64px;
+    margin: 48px 24px;
+    max-width: 1152px;
+    flex: 1;
 }
 
+.home-characters {
+    margin-bottom: 48px;
+}
 
+.home-character-list {
+    margin-top: 24px;
+}
 
 @media (max-width: $breakpoint-md) {
-    .home-wrapper {
-        margin: 100px 18px;
+
+    .home-wrapper,
+    .error {
+        margin-top: 100px;
     }
 }
