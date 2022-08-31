@@ -1,19 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Search from "./Search";
-import digieggs from "../../assets/digieggs.svg";
-import star from "../../assets/star.svg";
+import { ReactComponent as Digieggs } from "../../assets/digieggs.svg";
+import { ReactComponent as Star } from "../../assets/star.svg";
 
 const Navbar = () => {
   return (
     <nav className="nav">
       <div className="navbar">
-        <img className="logo" src={digieggs} alt="logo" />
+        <Link to="/">
+          <Digieggs className="logo" />
+        </Link>
         <Search className="search" />
-        <div className="favorites">
-          <img src={star} alt="favorites" className="favorites-icon" />
+        <Link to="/favorites" className="favorite-link">
+          <Star className="favorites-icon" />
           <p className="favorite-text">Favorites</p>
-        </div>
+        </Link>
       </div>
     </nav>
   );

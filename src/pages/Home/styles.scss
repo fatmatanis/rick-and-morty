@@ -1,0 +1,45 @@
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    margin: 48px 24px;
+    max-width: 1152px;
+    flex: 1;
+}
+
+.home-characters {
+    margin-bottom: 66px;
+}
+
+.home-character-list, .home-episode-list {
+    margin-top: 24px;
+}
+
+@media (max-width: $breakpoint-md) {
+
+    .home-wrapper,
+    .error {
+        margin-top: 100px;
+    }
+}
+
+.home-episode-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 24px;
+}
+.episode-list {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+    min-width: 368px;
+}
+
