@@ -5,7 +5,7 @@ export const GetEpisode = gql`
     episode(id: $id) {
       id
       name
-      airDate: air_date
+      air_date
       episode
       characters {
         id
