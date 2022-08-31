@@ -14,10 +14,10 @@
 }
 
 .home-characters {
-    margin-bottom: 48px;
+    margin-bottom: 66px;
 }
 
-.home-character-list {
+.home-character-list, .home-episode-list {
     margin-top: 24px;
 }
 
@@ -28,3 +28,18 @@
         margin-top: 100px;
     }
 }
+
+.home-episode-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 24px;
+}
+.episode-list {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+    min-width: 368px;
+}
+
