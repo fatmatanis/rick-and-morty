@@ -1,0 +1,47 @@
+.character-detail-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    background: $gradient;
+    gap: 28px;
+}
+
+.character-detail-character {
+    display: flex;
+    flex-direction: column;
+    margin: 51px 144px;   
+}
+
+.character-name-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    margin: 26px 0;
+}
+
+.character-name {
+    @include typography(48px, 700, 58px);
+    color: white;
+}
+
+.character-image {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 288px;
+}
+
+@media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
+    .character-detail-top {
+        padding: 26px 24px;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .character-detail-top {
+        padding: 100px 25px;
+    }
+}
