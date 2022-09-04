@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
+
 import { useQuery } from "@apollo/client";
 import Navigation from "../../components/Navigation";
 import { GetCharacter } from "../../queries/characters";
@@ -96,7 +97,6 @@ function CharacterDetail() {
           </div>
         </div>
       </div>
-
       <div className="character-episodes">
         <div className="character-episodes-wrapper">
           <div className="character-episodes-title">
@@ -105,16 +105,16 @@ function CharacterDetail() {
               text="Episodes"
               count={data.character.episode.length}
             />
-          </div>
-          <div className="character-episode-items-container">
-            <div className="arrow-link">
-              <div className="arrow-link-item">
-                <Link to={`/characters/${pageUrlId}/episodes`}>
-                  <RightArrow />
-                </Link>
+            <div className="character-episode-items-container">
+              <div className="arrow-link">
+                <div className="arrow-link-item">
+                  <Link to={`/characters/${pageUrlId}/episodes`}>
+                    <RightArrow />
+                  </Link>
+                </div>
               </div>
+              <div className="character-episode-items">{episodes}</div>
             </div>
-            <div className="character-episode-items">{episodes}</div>
           </div>
         </div>
       </div>
