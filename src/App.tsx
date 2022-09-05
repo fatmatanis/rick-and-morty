@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import CharacterDetail from "./pages/CharacterDetail";
 import Home from "./pages/Home";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="characters/:characterId" element={<CharacterDetail />} />
       </Routes>
     </BrowserRouter>
   );
