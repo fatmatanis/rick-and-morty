@@ -1,0 +1,152 @@
+.episode-detail-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $gradient;
+    height: 100%;
+    gap: 28px;
+}
+
+.episode-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 52px 0;
+    max-width: 1152px;
+    width: calc(100% - 48px);
+    gap: 30px;
+}
+
+.episode-list-back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    gap: 2px;
+
+    .episodes-arrow {
+        path {
+            stroke: white !important;
+        }
+    }
+}
+
+.episode-list-back-text {
+    @include typography(16px, 700, 19px);
+    color: white;
+}
+
+.episode-list-next-back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.episode-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+}
+
+.episode-detail-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+.episode-detail-name {
+    @include typography(48px, 700, 58px);
+    color: white;
+}
+
+.episode-detail-episode {
+    @include typography(48px, 700, 58px);
+    color: $black;
+    padding: 2px 12px;
+    background-color: $green;
+    border-radius: 4px;
+}
+
+.episode-detail-date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.episode-detail-aired {
+    @include typography(16px, 700, 19px);
+    color: white;
+}
+
+.episode-detail-air-date {
+    @include typography(16px, 400, 19px);
+    color: white;
+}
+
+.episode-detail-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.showmore {
+    @include typography(20px, 400, 24px);
+    color: white;
+}
+
+.showless {
+    @include typography(20px, 400, 24px);
+    color: white;
+    max-height: 96px;
+    background: linear-gradient(180deg, white 0%, rgba(255, 255, 255, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.episode-detail-description-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    @include typography(16px, 400, 19px);
+    color: $green;
+}
+
+.episode-characters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: $breakpoint-md) {
+
+    .episode-detail-name,
+    .episode-detail-episode {
+        @include typography(32px, 700, 39px);
+    }
+
+    .showless,
+    .showmore {
+        @include typography(16px, 400, 19px);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+
+    .episode-detail-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
