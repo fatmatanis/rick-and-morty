@@ -10,6 +10,7 @@ import TitleCount from "../../components/TitleCount";
 import LocationCard from "../../components/LocationCard";
 import { ReactComponent as LeftArrow } from "../../assets/leftArrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
+import { loremIpsumText } from "../../constants";
 import { ICharacter, ILocation } from "../../types/types";
 
 const EpisodeDetail = () => {
@@ -24,37 +25,39 @@ const EpisodeDetail = () => {
 
   useEffect(() => {
     if (data) {
-      setEpisodeLocation(
-        data.episode.characters.map((item: ICharacter) => {
+      const characterLocations = data.episode.characters.map(
+        (item: ICharacter) => {
           return {
             name: item.location.name,
             dimension: item.location.dimension,
             type: item.location.type
           };
-        })
+        }
       );
+
+      setEpisodeLocation(characterLocations);
     }
   }, [data]);
 
   useEffect(() => {
     if (episodeLocation?.length > 0) {
-      setLocationArray(
-        Array.from(
-          new Map<string, ILocation>(
-            episodeLocation.map((i: ILocation) => [i["name"], i])
-          ).values()
-        )
-          .filter(i => {
-            return i.name !== "unknown";
-          })
-          .map(({ name, type, dimension }: ILocation, index) => {
-            return (
-              <div key={index} className="location-box">
-                <LocationCard name={name} type={type} dimension={dimension} />
-              </div>
-            );
-          })
-      );
+      const uniqueLocations = Array.from(
+        new Map<string, ILocation>(
+          episodeLocation.map((i: ILocation) => [i["name"], i])
+        ).values()
+      )
+        .filter(i => {
+          return i.name !== "unknown";
+        })
+        .map(({ name, type, dimension }: ILocation, index) => {
+          return (
+            <div key={index} className="location-box">
+              <LocationCard name={name} type={type} dimension={dimension} />
+            </div>
+          );
+        });
+
+      setLocationArray(uniqueLocations);
     }
   }, [episodeLocation]);
 
@@ -106,21 +109,7 @@ const EpisodeDetail = () => {
             </div>
             <div className="episode-detail-description-container">
               <span className={`${isShowMore ? "showmore" : "showless"}`}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est
-                laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                {loremIpsumText}
               </span>
               <button
                 className="episode-detail-description-button"
