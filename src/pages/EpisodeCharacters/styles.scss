@@ -1,0 +1,57 @@
+.episode-characters-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.episode-characters-container {
+    display: flex;
+    flex-direction: column;
+    margin: 52px 0px;
+    max-width: 1152px;
+    flex: 1;
+    width: calc(100% - 48px);
+}
+
+.episode-detail-page {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    gap: 2px;
+
+    .episode-detail-page-text {
+        @include typography(16px, 700, 19px);
+        color: $black;
+    }
+
+    &:hover {
+        .episode-detail-page-arrow {
+            path {
+                stroke: $darkgray;
+            }
+        }
+
+        .episode-detail-page-text {
+            color: $darkgray;
+        }
+    }
+
+    &:focus {
+        .episode-detail-page-arrow {
+            path {
+                stroke: $khaki;
+            }
+        }
+
+        .episode-detail-page-text {
+            color: $khaki;
+        }
+    }
+}
+
+.episode-charters-list {
+    margin-top: 24px;
+}
