@@ -50,17 +50,16 @@ export interface ICharacter {
   status: string;
   gender: string;
   species: string;
-  location?: ILocation;
+  location: ILocation;
   origin: ILocation;
   episode?: IEpisode[];
 }
 
 export interface ILocation {
-  id?: number;
-  name?: string;
+  name: string;
   residents?: ICharacter[];
-  dimension?: string;
-  type?: string;
+  dimension: string;
+  type: string;
 }
 export interface IEpisode {
   id: number;

@@ -1,22 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import { GetEpisode } from "../../queries/episodes";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { ReactComponent as LeftArrow } from "../../assets/leftArrow.svg";
-import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 import FavoriteButton from "../../components/FavoriteButton";
 import CharacterList from "../../components/CharacterList";
 import TitleCount from "../../components/TitleCount";
+import LocationCard from "../../components/LocationCard";
+import { ReactComponent as LeftArrow } from "../../assets/leftArrow.svg";
+import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
+import { ICharacter, ILocation } from "../../types/types";
 
 const EpisodeDetail = () => {
   const [isShowMore, setIsShowMore] = useState(false);
+  const [episodeLocation, setEpisodeLocation] = useState<ILocation[]>([]);
+  const [locationArray, setLocationArray] = useState<JSX.Element[]>([]);
   const location = useLocation();
   const episodeId = location.pathname.split("/").slice(2).toString();
   const { loading, error, data } = useQuery(GetEpisode, {
     variables: { id: episodeId }
   });
+
+  useEffect(() => {
+    if (data) {
+      setEpisodeLocation(
+        data.episode.characters.map((item: ICharacter) => {
+          return {
+            name: item.location.name,
+            dimension: item.location.dimension,
+            type: item.location.type
+          };
+        })
+      );
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (episodeLocation?.length > 0) {
+      setLocationArray(
+        Array.from(
+          new Map<string, ILocation>(
+            episodeLocation.map((i: ILocation) => [i["name"], i])
+          ).values()
+        )
+          .filter(i => {
+            return i.name !== "unknown";
+          })
+          .map(({ name, type, dimension }: ILocation, index) => {
+            return (
+              <div key={index} className="location-box">
+                <LocationCard name={name} type={type} dimension={dimension} />
+              </div>
+            );
+          })
+      );
+    }
+  }, [episodeLocation]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <p className="error">Error :(</p>;
@@ -106,6 +146,10 @@ const EpisodeDetail = () => {
                 cardCount={4}
               />
             </div>
+          </div>
+          <TitleCount link="#" text="Locations" count={locationArray.length} />
+          <div className="episode-location-container">
+            <div className="episode-locations-array">{locationArray}</div>
           </div>
         </div>
       </div>
