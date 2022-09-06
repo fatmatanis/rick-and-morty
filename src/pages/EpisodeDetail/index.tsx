@@ -69,7 +69,7 @@ const EpisodeDetail = () => {
     <>
       <div className="episode-detail-wrapper">
         <div className="episode-detail-container">
-          <Link to={"/episodes"} className="episode-list-back">
+          <Link to="/episodes" className="episode-list-back">
             <LeftArrow className="episodes-arrow" />
             <span className="episode-list-back-text">Episode List</span>
           </Link>
