@@ -12,11 +12,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-<<<<<<< HEAD
         <Route path="episodes/:episodeId" element={<EpisodeDetail />} />
-=======
         <Route path="characters/:characterId" element={<CharacterDetail />} />
->>>>>>> main
       </Routes>
     </BrowserRouter>
   );
