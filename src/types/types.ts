@@ -69,6 +69,11 @@ export interface IEpisode {
   characters: ICharacter[];
 }
 
+export interface ICharacterDetail {
+  title: string;
+  text: string;
+}
+
 interface ISelectedFilter {
   label: string;
   value: string;

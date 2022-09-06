@@ -8,7 +8,7 @@ const FavoriteButton = ({ favStyle }: IFavoriteButtonProps) => {
     <div className={`favorite-button ${favStyle}`}>
       <div className="favorite-button-content">
         <Star className="favorite-star" />
-        <span className="favorite-button-text">Add your favorite</span>
+        <span className="favorite-button-text">Add your favorites</span>
       </div>
     </div>
   );
