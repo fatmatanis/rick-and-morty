@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     padding: 16px;
-    gap: 10px;
     border-radius: 8px;
     background: $gray;
-    width: calc(33.33% - 26px);
-    box-sizing: border-box;
+    width: 100%;
     border: 1px solid $gray;
+    gap: 12px
 }
 
 .location-card-container {
@@ -16,7 +15,6 @@
 }
 
 .location-name {
-    
     @include typography(16px, 700, 19px);
     margin-left: 8px;
 }
@@ -34,22 +32,4 @@
 .location-dimension {
     @include typography(14px, 400, 17px);
     color: $dovegray;
-}
-
-@media (max-width: $breakpoint-lg) {
-    .location-card-wrapper {
-        width: calc(50% - 16px);
-    }
-}
-
-@media (min-width: $breakpoint-md) {
-    .location-card-wrapper {
-        width: calc(50% - 16px);
-    }
-}
-
-@media (max-width: $breakpoint-sm) {
-    .location-card-wrapper {
-        width: 100%;
-    }
 }
