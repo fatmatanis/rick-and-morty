@@ -4,7 +4,8 @@
     align-items: flex-start;
     flex: 1;
     width: 100%;
-    min-width: 270px;
+    min-width: calc(20% - 12px);
+    max-width: calc(25% - 24px);
     gap: 16px;
 }
 
@@ -100,14 +101,6 @@
                 opacity: 0;
             }
         }
-    }
-}
-
-@media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
-    .character-card {
-        min-width: calc(20% - 12px);
-        max-width: calc(33.33% - 12px);
-       
     }
 }
 
