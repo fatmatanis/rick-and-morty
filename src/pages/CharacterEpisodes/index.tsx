@@ -48,9 +48,8 @@ const CharacterEpisodes = () => {
             ({ episode }: IEpisode) => episode.split("E")[0] === option
           );
           return prev;
-        } else {
-          return data.character.episode;
         }
+        return data.character.episode;
       };
       setSeasons(seaonsData);
     }
