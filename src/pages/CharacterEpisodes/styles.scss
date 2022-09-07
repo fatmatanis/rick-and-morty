@@ -1,0 +1,90 @@
+.character-episodes-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.character-episodes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 60px 0;
+    gap: 18px;
+    max-width: 1152px;
+    width: calc(100% - 48px);
+}
+
+.character-episodes-top {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.character-episodes-content {
+    display: flex;
+    flex-direction: row;
+    gap: 124px;
+}
+
+.character-episodes-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.character-name-character {
+    @include typography(48px, 700, 58px);
+    color: $black;
+    
+}
+
+.character-image-character {
+    border-radius: 8px;
+    width: 100%;
+    
+}
+
+.character-episodes-list-episodes {
+  display: flex;
+  flex-direction: column;
+}
+
+.character-episodes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 900px;
+    max-width: 100%;
+    overflow-y: scroll;
+    width: 100%;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 62.62%);
+}
+
+@media (max-width: $breakpoint-md) {
+    .character-episodes-wrapper {
+        margin-top: 40px;
+    }
+
+    .character-name-character {
+        @include typography(32px, 700, 38px);
+    }
+
+    .character-image-character {
+        width: 50%;
+    }
+
+    .character-episodes-content {
+        gap: 24px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: $breakpoint-xs) {
+    .character-image-character {
+        width: 100%;
+    }
+}
+

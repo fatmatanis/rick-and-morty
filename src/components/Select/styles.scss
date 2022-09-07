@@ -4,7 +4,6 @@
     @include typography(16px, 700, 19px);
     color: $black;
     width: 100%;
-    max-width: 368px;
 }
 
 .select-button {
@@ -73,12 +72,6 @@
 
 @media (max-width: $breakpoint-md) {
     .select-wrapper {
-        max-width: 366px;
-    }
-}
-
-@media (max-width: $breakpoint-sm) {
-    .select-wrapper {
-        max-width: 544px;
+        width: 100%;
     }
 }
