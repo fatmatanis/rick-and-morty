@@ -63,6 +63,10 @@
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 62.62%);
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+  }
+
 @media (max-width: $breakpoint-md) {
     .character-episodes-wrapper {
         margin-top: 40px;
