@@ -22,21 +22,20 @@ const CharacterEpisodes = () => {
 
   useEffect(() => {
     if (data) {
-      setEpisodes(
-        seasons.map((episode: IEpisode) => {
-          return (
-            <div key={episode.id}>
-              <EpisodeCard
-                id={episode.id}
-                season={episode.episode}
-                date={episode.air_date}
-                title={episode.name}
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
-              />
-            </div>
-          );
-        })
-      );
+      const seasonEpisodes = seasons.map((episode: IEpisode) => {
+        return (
+          <div key={episode.id}>
+            <EpisodeCard
+              id={episode.id}
+              season={episode.episode}
+              date={episode.air_date}
+              title={episode.name}
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+            />
+          </div>
+        );
+      });
+      setEpisodes(seasonEpisodes);
     }
   }, [data, seasons]);
 
