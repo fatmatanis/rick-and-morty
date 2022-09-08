@@ -6,6 +6,7 @@ import CharacterDetail from "./pages/CharacterDetail";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import EpisodeCharacters from "./pages/EpisodeCharacters";
 import Home from "./pages/Home";
+import CharacterEpisodes from "./pages/CharacterEpisodes";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route
           path="/episodes/:episodeId/characters"
           element={<EpisodeCharacters />}
+        />
+        <Route
+          path="characters/:characterId/episodes"
+          element={<CharacterEpisodes />}
         />
       </Routes>
     </BrowserRouter>

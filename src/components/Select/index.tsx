@@ -5,7 +5,7 @@ import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import { ISelectprops } from "../../types/types";
 
 const Select = ({ options, filtered }: ISelectprops) => {
-  const { ref, isOpen, setIsOpen } = useComponentOpen(true);
+  const { ref, isOpen, setIsOpen } = useComponentOpen(false);
 
   const handleOpen = () => {
     setIsOpen(isOpen => !isOpen);
