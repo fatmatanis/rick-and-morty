@@ -7,6 +7,7 @@ import EpisodeDetail from "./pages/EpisodeDetail";
 import EpisodeCharacters from "./pages/EpisodeCharacters";
 import Home from "./pages/Home";
 import CharacterEpisodes from "./pages/CharacterEpisodes";
+import Characters from "./pages/Characters";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           path="characters/:characterId/episodes"
           element={<CharacterEpisodes />}
         />
+        <Route path="/characters" element={<Characters />} />
       </Routes>
     </BrowserRouter>
   );
