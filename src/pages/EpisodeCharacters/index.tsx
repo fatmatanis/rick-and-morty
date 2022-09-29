@@ -24,7 +24,7 @@ const EpisodeCharacters = () => {
     }
   }, [data]);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
 
   return (

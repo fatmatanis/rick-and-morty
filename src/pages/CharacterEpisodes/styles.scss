@@ -50,6 +50,9 @@
 .character-episodes-list-episodes {
   display: flex;
   flex-direction: column;
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 
 .character-episodes-list {
@@ -62,10 +65,6 @@
     width: 100%;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 62.62%);
 }
-
-::-webkit-scrollbar {
-    width: 0px;
-  }
 
 @media (max-width: $breakpoint-md) {
     .character-episodes-wrapper {

@@ -1,10 +1,11 @@
 import React from "react";
 
 import loading from "../../assets/loading.png";
+import { ILoadingSpinnerProps } from "../../types/types";
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ loadingStyle }: ILoadingSpinnerProps) => {
   return (
-    <div className="loading-spinner-container">
+    <div className={`loading-spinner-container ${loadingStyle}`}>
       <img
         className="loading-spinner-image"
         src={loading}
