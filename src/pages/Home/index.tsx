@@ -38,7 +38,8 @@ const Home = () => {
     }
   }, [episodes.data]);
 
-  if (characters.loading || episodes.loading) return <LoadingSpinner />;
+  if (characters.loading || episodes.loading)
+    return <LoadingSpinner loadingStyle="arsenic" />;
   if (characters.error || episodes.error)
     return <p className="error">Error :(</p>;
 

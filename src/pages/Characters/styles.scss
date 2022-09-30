@@ -1,0 +1,28 @@
+.characters-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.characters-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+    max-width: 1152px;
+    flex: 1;
+    width: calc(100% - 48px);
+}
+
+.characters-list-results {
+    margin-top: 50px;
+}
+
+@media (max-width: $breakpoint-md) {
+
+    .characters-wrapper,
+    .error {
+        margin-top: 48px;
+    }
+}

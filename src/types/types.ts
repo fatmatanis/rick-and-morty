@@ -25,6 +25,10 @@ export interface IFavoriteButtonProps {
   favStyle: string;
 }
 
+export interface ILoadingSpinnerProps {
+  loadingStyle: string;
+}
+
 export interface ICharacterCardProps {
   id: number;
   image: string;
