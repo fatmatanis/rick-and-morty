@@ -18,7 +18,7 @@
 }
 
 .home-character-list, .home-episode-list {
-    margin-top: 24px;
+    margin-top: 26px;
 }
 
 @media (max-width: $breakpoint-md) {
@@ -40,6 +40,22 @@
     flex-direction: row;
     width: 100%;
     flex: 1;
-    min-width: 368px;
+    min-width: calc(33.33% - 16px);
+    max-width: calc(33.33% - 16px);
+}
+
+@media (max-width: $breakpoint-md) {
+
+    .episode-list {
+        max-width: calc(50% - 12px);
+        min-width: calc(50% - 12px);
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+
+    .episode-list {
+        min-width: 100%;
+    }
 }
 
