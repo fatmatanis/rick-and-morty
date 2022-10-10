@@ -38,24 +38,21 @@
 .episode-list {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    flex: 1;
-    min-width: calc(33.33% - 16px);
-    max-width: calc(33.33% - 16px);
+    width: calc(33.33% - 16px); 
 }
 
 @media (max-width: $breakpoint-md) {
 
     .episode-list {
-        max-width: calc(50% - 12px);
-        min-width: calc(50% - 12px);
+        width: calc(50% - 12px);
+ 
     }
 }
 
 @media (max-width: $breakpoint-sm) {
 
     .episode-list {
-        min-width: 100%;
+        width: 100%;
     }
 }
 
