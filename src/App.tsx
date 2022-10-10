@@ -27,6 +27,7 @@ function App() {
           element={<CharacterEpisodes />}
         />
         <Route path="/characters" element={<Characters />} />
+        <Route path="/episodes" element={<Characters />} />
         <Route path="/search" element={<SearchResults />} />
       </Routes>
     </BrowserRouter>
