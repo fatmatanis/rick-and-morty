@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useLazyQuery } from "@apollo/client";
@@ -14,8 +20,12 @@ const Navbar = () => {
   const [dropdownArray, setDropdownArray] = useState([]);
   const navigate = useNavigate();
   const [search, { data }] = useLazyQuery(NavSearch);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  console.log("select", searchValue);
+  const handleInputValue = (e: string) => {
+    inputRef.current && (inputRef.current.value = e);
+    inputRef.current?.focus();
+  };
 
   const handleSearch = useCallback(
     (e: string) => {
@@ -40,7 +50,7 @@ const Navbar = () => {
   );
 
   useEffect(() => {
-    if (data) {
+    if (data && searchValue.length > 0) {
       const dropdownCharsArray = Object.values(data?.characters?.results).slice(
         0,
         4
@@ -57,6 +67,15 @@ const Navbar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setDropdownArray([]);
+    handleSearch((event.target as HTMLButtonElement).innerText);
+    setSearchValue((event.target as HTMLButtonElement).innerText);
+    handleInputValue((event.target as HTMLButtonElement).innerText);
+  };
+
   return (
     <>
       <nav className="nav">
@@ -67,6 +86,7 @@ const Navbar = () => {
           <Search
             className="search"
             handleChange={e => debouncer(e.target.value)}
+            ref={inputRef}
           />
           <Link to="/favorites" className="favorite-link">
             <Star className="favorites-icon" />
@@ -85,11 +105,7 @@ const Navbar = () => {
               <button
                 key={index}
                 className="navbar-dropdown-item"
-                onClick={event => {
-                  setDropdownArray([]);
-                  handleSearch((event.target as HTMLButtonElement).innerText);
-                  setSearchValue((event.target as HTMLButtonElement).innerText);
-                }}
+                onClick={handleClick}
               >
                 {item.name}
               </button>

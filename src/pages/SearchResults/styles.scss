@@ -37,7 +37,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px 24px;
+    margin: 50px auto;
     max-width: 1152px;
     flex-basis: 100%;
     @include typography(32px, 700, 39px);
