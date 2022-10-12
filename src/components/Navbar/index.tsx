@@ -72,7 +72,6 @@ const Navbar = () => {
   ) => {
     setDropdownArray([]);
     handleSearch((event.target as HTMLButtonElement).innerText);
-    setSearchValue((event.target as HTMLButtonElement).innerText);
     handleInputValue((event.target as HTMLButtonElement).innerText);
   };
 

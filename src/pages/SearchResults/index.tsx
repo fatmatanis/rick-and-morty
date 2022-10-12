@@ -25,25 +25,26 @@ function SearchResults() {
     }
   );
 
+  const charResultsLength = (state as ISearchData)?.characters?.results?.length;
+  const episodeResultsLength = (state as ISearchData)?.episodes?.results
+    ?.length;
+  const charCount = (state as ISearchData)?.characters?.info?.count;
+  const episodeCount = (state as ISearchData)?.episodes?.info?.count;
+
   return (
     <>
-      {(state as ISearchData)?.episodes?.results?.length ||
-      (state as ISearchData)?.characters?.results?.length > 0 ? (
+      {episodeResultsLength || charResultsLength > 0 ? (
         <div className="search-results-wrapper">
           <div className="search-results-container">
             <div className="search-characters">
               <div className="search-results-title">Search Results</div>
               <TitleCount
-                count={
-                  (state as ISearchData)?.characters?.info?.count > 0
-                    ? (state as ISearchData)?.characters?.info?.count
-                    : 0
-                }
+                count={charCount > 0 ? charCount : 0}
                 text="Characters"
                 link="#"
               />
 
-              {(state as ISearchData)?.characters?.results?.length > 0 ? (
+              {charResultsLength > 0 ? (
                 <div className="home-character-list">
                   <CharacterList
                     characters={(state as ISearchData)?.characters?.results}
@@ -56,16 +57,12 @@ function SearchResults() {
             </div>
             <div className="">
               <TitleCount
-                count={
-                  (state as ISearchData)?.episodes?.info?.count > 0
-                    ? (state as ISearchData)?.episodes?.info?.count
-                    : 0
-                }
+                count={episodeCount > 0 ? episodeCount : 0}
                 text="Episodes"
                 link="#"
               />
             </div>
-            {(state as ISearchData)?.episodes?.results?.length > 0 ? (
+            {episodeResultsLength > 0 ? (
               <div className="home-episode-list">{episodeArray}</div>
             ) : (
               <div className="no-search">There is no search results.</div>

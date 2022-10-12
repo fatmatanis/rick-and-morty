@@ -103,16 +103,19 @@ export interface IScalars {
   Boolean: boolean;
   Int: number;
 }
+
+export interface IBaseData {
+  __typename: string;
+}
+
 export interface IInfo {
-  __typename?: string;
   count: IScalars["Int"];
   next?: IScalars["Int"];
   pages?: IScalars["Int"];
   prev?: IScalars["Int"];
 }
 
-export interface IEpisodes {
-  __typename?: string;
+export interface IEpisodes extends IBaseData {
   info: IInfo;
   results: IEpisode[];
 }
