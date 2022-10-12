@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import { GetEpisode } from "../../queries/episodes";
+import { FavoritesContext } from "../../store/favorites-contex";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FavoriteButton from "../../components/FavoriteButton";
 import CharacterList from "../../components/CharacterList";
@@ -17,6 +18,8 @@ const EpisodeDetail = () => {
   const [isShowMore, setIsShowMore] = useState(false);
   const [episodeLocation, setEpisodeLocation] = useState<ILocation[]>([]);
   const [locationArray, setLocationArray] = useState<JSX.Element[]>([]);
+  const { addEpisodeFavorites, deleteEpisodeFavorites, episodesList } =
+    useContext(FavoritesContext);
   const location = useLocation();
   const episodeId = location.pathname.split("/").slice(2).toString();
   const { loading, error, data } = useQuery(GetEpisode, {
@@ -61,6 +64,18 @@ const EpisodeDetail = () => {
     }
   }, [episodeLocation]);
 
+  const isFav =
+    episodesList.length > 0 &&
+    episodesList.some(episode => episode.id === data?.episode?.id);
+
+  const addEpisodeFavHandler = () => {
+    addEpisodeFavorites(data?.episode);
+  };
+
+  const deleteEpisodeFavHandler = () => {
+    deleteEpisodeFavorites(data?.episode?.id);
+  };
+
   if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
 
@@ -99,7 +114,13 @@ const EpisodeDetail = () => {
               <span className="episode-detail-episode">
                 {data.episode.episode}
               </span>
-              <FavoriteButton favStyle="green" />
+              <FavoriteButton
+                favStyle="green"
+                favorited={isFav}
+                toggleFavorites={
+                  !isFav ? addEpisodeFavHandler : deleteEpisodeFavHandler
+                }
+              />
             </div>
             <div className="episode-detail-date">
               <span className="episode-detail-aired">Aired:</span>

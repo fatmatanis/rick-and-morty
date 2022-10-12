@@ -1,0 +1,37 @@
+.favorites-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+}
+
+.favorites-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+    max-width: 1152px;
+    flex: 1;
+    width: calc(100% - 48px);
+}
+
+.favorites-text {
+    @include typography(32px, 700, 38px);
+    margin-bottom: 66px;
+}
+
+.favorites-characters {
+    margin-bottom: 66px;
+}
+
+
+@media (max-width: $breakpoint-md) {
+
+    .favorites-wrapper {
+        margin-top: 50px;
+    }
+
+    .favorites-text {
+        margin-bottom: 32px;
+    }
+}
