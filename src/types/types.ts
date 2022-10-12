@@ -1,5 +1,7 @@
 export interface INavbarProps {
   className: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchValue?: string;
 }
 
 export interface ICharacterDetailCardProps {
@@ -93,4 +95,38 @@ export interface ILocationCardProps {
   name: string;
   type: string;
   dimension: string;
+}
+
+export interface IScalars {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+}
+
+export interface IBaseData {
+  __typename: string;
+}
+
+export interface IInfo {
+  count: IScalars["Int"];
+  next?: IScalars["Int"];
+  pages?: IScalars["Int"];
+  prev?: IScalars["Int"];
+}
+
+export interface IEpisodes extends IBaseData {
+  info: IInfo;
+  results: IEpisode[];
+}
+
+export interface ICharacters {
+  __typename?: string;
+  info: IInfo;
+  results: ICharacter[];
+}
+
+export interface ISearchData {
+  characters: ICharacters;
+  episodes: IEpisodes;
 }
