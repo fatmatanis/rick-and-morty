@@ -25,6 +25,8 @@ export interface IEpisodeCardProps {
 
 export interface IFavoriteButtonProps {
   favStyle: string;
+  favorited: boolean;
+  toggleFavorites: () => void;
 }
 
 export interface ILoadingSpinnerProps {

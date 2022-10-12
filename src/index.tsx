@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App";
 import "./index.scss";
+import { FavoritesContextProvider } from "./store/favorites-contex";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <FavoritesContextProvider>
+        <App />
+      </FavoritesContextProvider>
     </ApolloProvider>
   </React.StrictMode>
 );

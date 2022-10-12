@@ -10,6 +10,7 @@ import CharacterEpisodes from "./pages/CharacterEpisodes";
 import Characters from "./pages/Characters";
 import SearchResults from "./pages/SearchResults";
 import Episodes from "./pages/Episodes";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/characters" element={<Characters />} />
         <Route path="/episodes" element={<Episodes />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );
