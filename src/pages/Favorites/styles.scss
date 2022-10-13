@@ -24,6 +24,16 @@
     margin-bottom: 66px;
 }
 
+.no-favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    @include typography(32px, 700, 39px);
+    color: $darkgray;
+}
+
 
 @media (max-width: $breakpoint-md) {
 
@@ -33,5 +43,9 @@
 
     .favorites-text {
         margin-bottom: 32px;
+    }
+
+    .no-favorites {
+        @include typography(20px, 700, 24px);
     }
 }

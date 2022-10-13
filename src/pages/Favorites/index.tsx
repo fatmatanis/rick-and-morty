@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
+import { FavoritesContext } from "../../store/favorites-contex";
 import CharacterList from "../../components/CharacterList";
 import EpisodeCard from "../../components/EpisodeCard";
 import TitleCount from "../../components/TitleCount";
-import { FavoritesContext } from "../../store/favorites-contex";
 import { IEpisode } from "../../types/types";
 
 const Favorites = () => {
@@ -27,20 +27,44 @@ const Favorites = () => {
     <div className="favorites-wrapper">
       <div className="favorites-container">
         <span className="favorites-text">Favorites</span>
-        <div className="favorites-characters">
-          <TitleCount
-            link="#"
-            text="Characters"
-            count={charactersList.length}
-          />
-          <div className="home-character-list">
-            <CharacterList characters={charactersList} cardCount={0} />
+        {charactersList.length > 0 || episodesList.length > 0 ? (
+          <div>
+            {charactersList.length > 0 ? (
+              <div className="favorites-characters">
+                <TitleCount
+                  link="#"
+                  text="Characters"
+                  count={charactersList.length}
+                />
+                <div className="home-character-list">
+                  <CharacterList characters={charactersList} cardCount={0} />
+                </div>
+              </div>
+            ) : (
+              <span className="no-favorites">
+                You have no favourite character yet
+              </span>
+            )}
+            {episodesList.length > 0 ? (
+              <div>
+                <TitleCount
+                  link="#"
+                  text="Episodes"
+                  count={episodeListArr.length}
+                />
+                <div className="home-episode-list">{episodeListArr}</div>
+              </div>
+            ) : (
+              <span className="no-favorites">
+                You have no favourite episode yet
+              </span>
+            )}
           </div>
-        </div>
-        <div>
-          <TitleCount link="#" text="Episodes" count={episodeListArr.length} />
-          <div className="home-episode-list">{episodeListArr}</div>
-        </div>
+        ) : (
+          <span className="no-favorites">
+            You have no favourite character or episode yet
+          </span>
+        )}
       </div>
     </div>
   );
