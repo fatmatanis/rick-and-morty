@@ -55,7 +55,7 @@ function SearchResults() {
                 <div className="no-search">There is no search results.</div>
               )}
             </div>
-            <div className="">
+            <div>
               <TitleCount
                 count={episodeCount > 0 ? episodeCount : 0}
                 text="Episodes"

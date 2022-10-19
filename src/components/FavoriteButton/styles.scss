@@ -4,6 +4,7 @@
     align-items: center;
     padding: 0px;
     gap: 8px;
+    cursor: pointer;
 }
 
 .favorite-button-text {
@@ -19,6 +20,11 @@
     .favorite-star path{
         stroke: $black;
     }
+
+    .favStar path{
+        fill: $black;
+        stroke: $black;
+    }
 }
 
 .green {
@@ -31,4 +37,8 @@
         stroke: $green;
     }
 
+    .favStar path {
+        stroke: $green;
+        fill: $green;
+    }
 }
