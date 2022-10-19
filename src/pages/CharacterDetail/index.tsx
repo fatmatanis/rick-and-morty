@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 
@@ -20,8 +20,14 @@ function CharacterDetail() {
   );
   const [array, setArray] = useState<JSX.Element[]>([]);
   const [episodes, setEpisodes] = React.useState<JSX.Element[]>([]);
-  const { charactersList, addCharFavorites, deleteCharFavorites } =
-    useContext(FavoritesContext);
+  const {
+    charactersList,
+    episodesList,
+    addCharFavorites,
+    deleteCharFavorites,
+    addEpisodeFavorites,
+    deleteEpisodeFavorites
+  } = useContext(FavoritesContext);
   const location = useLocation();
   const pageUrlId = location.pathname.split("/").slice(2).toString();
   const { loading, error, data } = useQuery(GetCharacter, {
@@ -58,10 +64,26 @@ function CharacterDetail() {
     }
   }, [characterDetail]);
 
+  const addEpisodeFavHandler = useCallback(
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ({ id, episode, air_date, name }: IEpisode) => {
+      addEpisodeFavorites({ id, episode, air_date, name });
+    },
+    [addEpisodeFavorites]
+  );
+
+  const deleteEpisodeFavHandler = useCallback(
+    (id: number) => deleteEpisodeFavorites(id),
+    [deleteEpisodeFavorites]
+  );
+
   useEffect(() => {
     if (data) {
       setEpisodes(
         data.character.episode.slice(0, 3).map((episode: IEpisode) => {
+          const isFav =
+            episodesList.length > 0 &&
+            episodesList.some(found => found.id === episode.id);
           return (
             <div className="character-episode-list" key={episode.id}>
               <EpisodeCard
@@ -70,13 +92,19 @@ function CharacterDetail() {
                 date={episode.air_date}
                 title={episode.name}
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+                favorited={isFav}
+                toggleFavorites={() =>
+                  !isFav
+                    ? addEpisodeFavHandler({ ...episode })
+                    : deleteEpisodeFavHandler(episode.id)
+                }
               />
             </div>
           );
         })
       );
     }
-  }, [data]);
+  }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
 
   const isFav =
     charactersList.length > 0 &&

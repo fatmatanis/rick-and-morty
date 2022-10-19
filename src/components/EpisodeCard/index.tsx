@@ -9,13 +9,25 @@ const EpisodeCard = ({
   season,
   date,
   title,
-  description
+  description,
+  favorited,
+  toggleFavorites
 }: IEpisodeCardProps) => {
   return (
     <div className="episode-card">
       <div className="episode-card-container">
-        <button className="episode-card-favorite-button">
-          <Star />
+        <button
+          className="episode-card-favorite-button"
+          onClick={() =>
+            toggleFavorites({
+              id,
+              episode: season,
+              air_date: date,
+              name: title
+            })
+          }
+        >
+          <Star className={`${favorited ? "favorited" : ""}`} />
         </button>
         <Link className="episode-card-link" to={`/episodes/${id}`}>
           <div className="episode-card-top">

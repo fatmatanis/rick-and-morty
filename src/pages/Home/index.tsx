@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { useQuery } from "@apollo/client";
 import { GetAllCharacters } from "../../queries/characters";
+import { GetAllEpisodes } from "../../queries/episodes";
+import { FavoritesContext } from "../../store/favorites-contex";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import TitleCount from "../../components/TitleCount";
-import CharacterList from "../../components/CharacterList";
-import { GetAllEpisodes } from "../../queries/episodes";
-import { IEpisode } from "../../types/types";
 import EpisodeCard from "../../components/EpisodeCard";
+import CharacterList from "../../components/CharacterList";
+import { IEpisode } from "../../types/types";
 
 const Home = () => {
   const [episode, setEpisode] = useState<JSX.Element[]>([]);
+  const { episodesList, addEpisodeFavorites, deleteEpisodeFavorites } =
+    useContext(FavoritesContext);
   const characters = useQuery(GetAllCharacters, {
     variables: { page: 1 }
   });
@@ -18,10 +21,27 @@ const Home = () => {
     variables: { page: 1 }
   });
 
+  const addEpisodeFavHandler = useCallback(
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ({ id, episode, air_date, name }: IEpisode) => {
+      addEpisodeFavorites({ id, episode, air_date, name });
+    },
+    [addEpisodeFavorites]
+  );
+
+  const deleteEpisodeFavHandler = useCallback(
+    (id: number) => deleteEpisodeFavorites(id),
+    [deleteEpisodeFavorites]
+  );
+
   useEffect(() => {
     if (episodes.data) {
-      setEpisode(
-        episodes.data.episodes.results.slice(0, 6).map((episode: IEpisode) => {
+      const episodeData = episodes.data.episodes.results
+        .slice(0, 6)
+        .map((episode: IEpisode) => {
+          const isFav =
+            episodesList.length > 0 &&
+            episodesList.some(found => found.id === episode.id);
           return (
             <div className="episode-list" key={episode.id}>
               <EpisodeCard
@@ -30,13 +50,24 @@ const Home = () => {
                 date={episode.air_date}
                 title={episode.name}
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+                favorited={isFav}
+                toggleFavorites={() =>
+                  !isFav
+                    ? addEpisodeFavHandler({ ...episode })
+                    : deleteEpisodeFavHandler(episode.id)
+                }
               />
             </div>
           );
-        })
-      );
+        });
+      setEpisode(episodeData);
     }
-  }, [episodes.data]);
+  }, [
+    addEpisodeFavHandler,
+    deleteEpisodeFavHandler,
+    episodes.data,
+    episodesList
+  ]);
 
   if (characters.loading || episodes.loading)
     return <LoadingSpinner loadingStyle="arsenic" />;

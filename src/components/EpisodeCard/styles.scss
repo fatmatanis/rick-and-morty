@@ -55,6 +55,12 @@
     all: unset;
     border: none;
     padding: 8px 0;
+    cursor: pointer;
+}
+
+.favorited path {
+    stroke: $black;
+    fill: $black;
 }
 
 .episode-card-bottom {
