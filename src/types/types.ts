@@ -21,6 +21,8 @@ export interface IEpisodeCardProps {
   date: string;
   title: string;
   description: string;
+  favorited: boolean;
+  toggleFavorites: ({ id, episode, air_date, name }: IEpisode) => void;
 }
 
 export interface IFavoriteButtonProps {
@@ -74,7 +76,7 @@ export interface IEpisode {
   name: string;
   episode: string;
   air_date: string;
-  characters: ICharacter[];
+  characters?: ICharacter[];
 }
 
 export interface ICharacterDetail {

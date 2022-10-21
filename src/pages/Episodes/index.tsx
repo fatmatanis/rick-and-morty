@@ -1,21 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import { useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { GetAllEpisodes } from "../../queries/episodes";
+import { FavoritesContext } from "../../store/favorites-contex";
 import EpisodeCard from "../../components/EpisodeCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { IEpisode } from "../../types/types";
 
 const Episodes = () => {
   const [episode, setEpisode] = useState<JSX.Element[]>([]);
+  const { episodesList, addEpisodeFavorites, deleteEpisodeFavorites } =
+    useContext(FavoritesContext);
   const { loading, error, data, fetchMore } = useQuery(GetAllEpisodes, {
     variables: { page: 1 }
   });
 
+  const addEpisodeFavHandler = useCallback(
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ({ id, episode, air_date, name }: IEpisode) => {
+      addEpisodeFavorites({ id, episode, air_date, name });
+    },
+    [addEpisodeFavorites]
+  );
+
+  const deleteEpisodeFavHandler = useCallback(
+    (id: number) => deleteEpisodeFavorites(id),
+    [deleteEpisodeFavorites]
+  );
+
   useEffect(() => {
     if (data) {
       const episodeData = data.episodes.results.map((episode: IEpisode) => {
+        const isFav =
+          episodesList.length > 0 &&
+          episodesList.some(found => found.id === episode.id);
         return (
           <div className="episode-list" key={episode.id}>
             <EpisodeCard
@@ -24,13 +43,19 @@ const Episodes = () => {
               date={episode.air_date}
               title={episode.name}
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+              favorited={isFav}
+              toggleFavorites={() =>
+                !isFav
+                  ? addEpisodeFavHandler({ ...episode })
+                  : deleteEpisodeFavHandler(episode.id)
+              }
             />
           </div>
         );
       });
       setEpisode(episodeData);
     }
-  }, [data]);
+  }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
 
   const nextPage = data?.episodes?.info?.next;
 

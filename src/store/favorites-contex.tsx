@@ -40,6 +40,7 @@ export const FavoritesContextProvider = ({ children }: IFavProps) => {
   };
 
   const addEpisodeFavorites = (episode: IEpisode) => {
+    if (episodesList.some(found => found.id === episode.id)) return;
     const newEpisodesFavList = [...episodesList, episode];
     setEpisodesList(newEpisodesFavList);
     saveFavEpisode(newEpisodesFavList);
