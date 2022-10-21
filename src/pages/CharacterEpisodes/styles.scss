@@ -26,7 +26,7 @@
 .character-episodes-content {
     display: flex;
     flex-direction: row;
-    gap: 124px;
+    gap: 11%;
 }
 
 .character-episodes-left {
@@ -38,13 +38,11 @@
 .character-name-character {
     @include typography(48px, 700, 58px);
     color: $black;
-    
 }
 
 .character-image-character {
     border-radius: 8px;
-    width: 100%;
-    
+    max-width: 366px; 
 }
 
 .character-episodes-list-episodes {

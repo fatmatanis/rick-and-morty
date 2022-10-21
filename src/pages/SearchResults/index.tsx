@@ -68,7 +68,6 @@ function SearchResults() {
                 text="Characters"
                 link="#"
               />
-
               {charResultsLength > 0 ? (
                 <div className="home-character-list">
                   <CharacterList

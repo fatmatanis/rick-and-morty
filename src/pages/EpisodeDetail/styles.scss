@@ -143,11 +143,7 @@
 .location-box {
     display: flex;
     flex-direction: row;
-    flex: 1;
-    width: 100%;
-    min-width: calc(33.33% - 16px);
-        max-width: calc(33.33% - 16px);
-
+    width: calc(33.33% - 16px);
 }
 
 @media (max-width: $breakpoint-md) {
@@ -163,8 +159,7 @@
     }
 
     .location-box {
-        max-width: calc(50% - 12px);
-        min-width: calc(50% - 12px);
+        width: calc(50% - 12px);
     }
 }
 
@@ -178,6 +173,6 @@
     }
 
     .location-box {
-        min-width: 100%;
+        width: 100%;
     }
 }
