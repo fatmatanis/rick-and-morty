@@ -18,14 +18,16 @@ const EpisodeCard = ({
       <div className="episode-card-container">
         <button
           className="episode-card-favorite-button"
-          onClick={() =>
-            toggleFavorites({
-              id,
-              episode: season,
-              air_date: date,
-              name: title
-            })
-          }
+          onClick={() => {
+            if (id && season && date && title) {
+              toggleFavorites({
+                id,
+                episode: season,
+                air_date: date,
+                name: title
+              });
+            }
+          }}
         >
           <Star className={`${favorited ? "favorited" : ""}`} />
         </button>
