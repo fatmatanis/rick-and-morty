@@ -9,6 +9,7 @@ import FavoriteButton from "../../components/FavoriteButton";
 import CharacterList from "../../components/CharacterList";
 import TitleCount from "../../components/TitleCount";
 import LocationCard from "../../components/LocationCard";
+import NotFound from "../NotFound";
 import { ReactComponent as LeftArrow } from "../../assets/leftArrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 import { loremIpsumText } from "../../constants";
@@ -79,7 +80,7 @@ const EpisodeDetail = () => {
 
   if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
-  if (data?.episode === null) return null;
+  if (data?.episode === null) return <NotFound />;
 
   const handleShow = () => {
     setIsShowMore(isShowMore => !isShowMore);

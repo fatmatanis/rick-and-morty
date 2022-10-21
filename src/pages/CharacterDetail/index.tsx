@@ -11,6 +11,7 @@ import FavoriteButton from "../../components/FavoriteButton";
 import CharacterDetailCard from "../../components/CharacterDetailCard";
 import EpisodeCard from "../../components/EpisodeCard";
 import TitleCount from "../../components/TitleCount";
+import NotFound from "../NotFound";
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 import { ICharacterDetail, IEpisode } from "../../types/types";
 
@@ -119,7 +120,7 @@ function CharacterDetail() {
 
   if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
-  if (data?.character === null) return null;
+  if (data?.character === null) return <NotFound />;
 
   return (
     <>
