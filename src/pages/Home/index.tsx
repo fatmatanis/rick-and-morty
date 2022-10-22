@@ -78,11 +78,13 @@ const Home = () => {
     <div className="home-wrapper">
       <div className="home-container">
         <div className="home-characters">
-          <TitleCount
-            link="/characters"
-            text="Characters"
-            count={characters.data.characters.info.count}
-          />
+          <div className="title-count-wrapper">
+            <TitleCount
+              link="/characters"
+              text="Characters"
+              count={characters.data.characters.info.count}
+            />
+          </div>
           <div className="home-character-list">
             <CharacterList
               characters={characters.data.characters.results}
