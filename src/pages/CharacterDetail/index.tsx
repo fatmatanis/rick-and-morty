@@ -11,6 +11,7 @@ import FavoriteButton from "../../components/FavoriteButton";
 import CharacterDetailCard from "../../components/CharacterDetailCard";
 import EpisodeCard from "../../components/EpisodeCard";
 import TitleCount from "../../components/TitleCount";
+import NotFound from "../NotFound";
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 import { ICharacterDetail, IEpisode } from "../../types/types";
 
@@ -34,36 +35,6 @@ function CharacterDetail() {
     variables: { id: pageUrlId }
   });
 
-  useEffect(() => {
-    if (data) {
-      setCharacterDetail([
-        { title: "Status", text: data.character.status },
-        { title: "Gender", text: data.character.gender },
-        { title: "Species", text: data.character.species },
-        { title: "Origin", text: data.character.origin.name },
-        {
-          title: "Type",
-          text: data.character.type === "" ? "Unknown" : data.character.type
-        },
-        { title: "Location", text: data.character.location.name }
-      ]);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (characterDetail?.length > 0) {
-      setArray(
-        characterDetail.map(({ title, text }: ICharacterDetail, index) => {
-          return (
-            <div className="character-detail-content-item" key={index}>
-              <CharacterDetailCard title={title} text={text} />
-            </div>
-          );
-        })
-      );
-    }
-  }, [characterDetail]);
-
   const addEpisodeFavHandler = useCallback(
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ({ id, episode, air_date, name }: IEpisode) => {
@@ -78,9 +49,24 @@ function CharacterDetail() {
   );
 
   useEffect(() => {
+    if (data?.character === null) return;
     if (data) {
-      setEpisodes(
-        data.character.episode.slice(0, 3).map((episode: IEpisode) => {
+      const characterDetailArr = [
+        { title: "Status", text: data.character.status },
+        { title: "Gender", text: data.character.gender },
+        { title: "Species", text: data.character.species },
+        { title: "Origin", text: data.character.origin.name },
+        {
+          title: "Type",
+          text: data.character.type === "" ? "Unknown" : data.character.type
+        },
+        { title: "Location", text: data.character.location.name }
+      ];
+      setCharacterDetail(characterDetailArr);
+
+      const episodesArr = data.character.episode
+        .slice(0, 3)
+        .map((episode: IEpisode) => {
           const isFav =
             episodesList.length > 0 &&
             episodesList.some(found => found.id === episode.id);
@@ -101,10 +87,24 @@ function CharacterDetail() {
               />
             </div>
           );
+        });
+      setEpisodes(episodesArr);
+    }
+  }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
+
+  useEffect(() => {
+    if (characterDetail?.length > 0) {
+      setArray(
+        characterDetail.map(({ title, text }: ICharacterDetail, index) => {
+          return (
+            <div className="character-detail-content-item" key={index}>
+              <CharacterDetailCard title={title} text={text} />
+            </div>
+          );
         })
       );
     }
-  }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
+  }, [characterDetail]);
 
   const isFav =
     charactersList.length > 0 &&
@@ -120,6 +120,7 @@ function CharacterDetail() {
 
   if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
+  if (data?.character === null) return <NotFound />;
 
   return (
     <>
@@ -150,14 +151,14 @@ function CharacterDetail() {
         <div className="character-episodes-wrapper">
           <div className="character-episodes-title">
             <TitleCount
-              link={`/characters/${pageUrlId}/episodes`}
+              link={`/characters/${data.character.id}/episodes`}
               text="Episodes"
               count={data.character.episode.length}
             />
             <div className="character-episode-items-container">
               <div className="arrow-link">
                 <div className="arrow-link-item">
-                  <Link to={`/characters/${pageUrlId}/episodes`}>
+                  <Link to={`/characters/${data.character.id}/episodes`}>
                     <RightArrow />
                   </Link>
                 </div>

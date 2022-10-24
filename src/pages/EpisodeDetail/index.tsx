@@ -9,6 +9,7 @@ import FavoriteButton from "../../components/FavoriteButton";
 import CharacterList from "../../components/CharacterList";
 import TitleCount from "../../components/TitleCount";
 import LocationCard from "../../components/LocationCard";
+import NotFound from "../NotFound";
 import { ReactComponent as LeftArrow } from "../../assets/leftArrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/rightArrow.svg";
 import { loremIpsumText } from "../../constants";
@@ -27,6 +28,7 @@ const EpisodeDetail = () => {
   });
 
   useEffect(() => {
+    if (data?.episode === null) return;
     if (data) {
       const characterLocations = data.episode.characters.map(
         (item: ICharacter) => {
@@ -78,6 +80,7 @@ const EpisodeDetail = () => {
 
   if (loading) return <LoadingSpinner loadingStyle="arsenic" />;
   if (error) return <p className="error">Error :(</p>;
+  if (data?.episode === null) return <NotFound />;
 
   const handleShow = () => {
     setIsShowMore(isShowMore => !isShowMore);
@@ -92,17 +95,19 @@ const EpisodeDetail = () => {
             <span className="episode-list-back-text">Episode List</span>
           </Link>
           <div className="episode-list-next-back">
-            <Link
-              to={`/episodes/${parseInt(episodeId) - 1}`}
-              className="episode-list-back"
-            >
-              <LeftArrow className="episodes-arrow" />
-            </Link>
+            {data.episode.id > 1 && (
+              <Link
+                to={`/episodes/${data.episode.id - 1}`}
+                className="episode-list-back"
+              >
+                <LeftArrow className="episodes-arrow" />
+              </Link>
+            )}
             <span className="episode-list-back-text">
               {data.episode.episode}
             </span>
             <Link
-              to={`/episodes/${parseInt(episodeId) + 1}`}
+              to={`/episodes/${parseInt(data.episode.id) + 1}`}
               className="episode-list-back"
             >
               <RightArrow className="episodes-arrow" />

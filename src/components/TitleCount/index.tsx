@@ -6,13 +6,15 @@ import { ITitleCountProps } from "../../types/types";
 
 const TitleCount = ({ link, text, count }: ITitleCountProps) => {
   return (
-    <Link to={link} className="title-count-link">
-      <div className="title-count-container">
-        <div className="title-count-text">{text}</div>
-        <div className="title-count-number">{count}</div>
-        <img className="right-arrow" src={rightArrow} alt="right-arrow" />
-      </div>
-    </Link>
+    <div className="title-count-wrapper">
+      <Link to={link} className="title-count-link">
+        <div className="title-count-container">
+          <div className="title-count-text">{text}</div>
+          <div className="title-count-number">{count}</div>
+          <img className="right-arrow" src={rightArrow} alt="right-arrow" />
+        </div>
+      </Link>
+    </div>
   );
 };
 
