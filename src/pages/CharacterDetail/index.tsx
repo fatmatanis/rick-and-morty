@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 
 import { useQuery } from "@apollo/client";
@@ -43,13 +42,6 @@ function CharacterDetail() {
     return setCurrentIndex(currentIndex + 1);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      carouselInfiniteScroll();
-    }, 3000);
-    return () => clearInterval(interval);
-  });
-
   const addEpisodeFavHandler = useCallback(
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ({ id, episode, air_date, name }: IEpisode) => {
@@ -79,30 +71,28 @@ function CharacterDetail() {
       ];
       setCharacterDetail(characterDetailArr);
 
-      const episodesArr = data.character.episode
-        .slice(0, 3)
-        .map((episode: IEpisode) => {
-          const isFav =
-            episodesList.length > 0 &&
-            episodesList.some(found => found.id === episode.id);
-          return (
-            <div className="character-episode-list" key={episode.id}>
-              <EpisodeCard
-                id={episode.id}
-                season={episode.episode}
-                date={episode.air_date}
-                title={episode.name}
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
-                favorited={isFav}
-                toggleFavorites={() =>
-                  !isFav
-                    ? addEpisodeFavHandler({ ...episode })
-                    : deleteEpisodeFavHandler(episode.id)
-                }
-              />
-            </div>
-          );
-        });
+      const episodesArr = data.character.episode.map((episode: IEpisode) => {
+        const isFav =
+          episodesList.length > 0 &&
+          episodesList.some(found => found.id === episode.id);
+        return (
+          <div className="character-episode-list" key={episode.id}>
+            <EpisodeCard
+              id={episode.id}
+              season={episode.episode}
+              date={episode.air_date}
+              title={episode.name}
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+              favorited={isFav}
+              toggleFavorites={() =>
+                !isFav
+                  ? addEpisodeFavHandler({ ...episode })
+                  : deleteEpisodeFavHandler(episode.id)
+              }
+            />
+          </div>
+        );
+      });
       setEpisodes(episodesArr);
     }
   }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
@@ -180,7 +170,9 @@ function CharacterDetail() {
                   </div>
                 </div>
               )}
-              <div className="character-episode-items">{episodes}</div>
+              <div className="character-episode-items">
+                {episodes.slice(0, 3)}
+              </div>
             </div>
           </div>
         </div>
