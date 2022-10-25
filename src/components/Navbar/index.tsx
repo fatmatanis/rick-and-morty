@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client";
 import _ from "lodash";
 import Search from "./Search";
+import useComponentOpen from "../../hooks/useComponentOpen";
 import { NavSearch } from "../../queries/search";
 import { ReactComponent as Digieggs } from "../../assets/digieggs.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
@@ -18,26 +19,10 @@ import { ICharacter, IEpisode } from "../../types/types";
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [dropdownArray, setDropdownArray] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [search, { data }] = useLazyQuery(NavSearch);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleClickOutside = (event: Event) => {
-    if (
-      inputRef.current &&
-      !inputRef.current.contains(event.target as HTMLInputElement)
-    ) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+  const { isOpen, setIsOpen } = useComponentOpen(false, inputRef);
 
   const handleInputValue = (e: string) => {
     inputRef.current && (inputRef.current.value = e);
@@ -59,7 +44,7 @@ const Navbar = () => {
         }
       });
     },
-    [search]
+    [search, setIsOpen]
   );
 
   const debouncer = useMemo(
