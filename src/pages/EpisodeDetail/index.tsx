@@ -154,6 +154,7 @@ const EpisodeDetail = () => {
               link={`/episodes/${episodeId}/characters`}
               text="Characters"
               count={data.episode.characters.length}
+              clickable={true}
             />
             <div className="home-character-list">
               <CharacterList
@@ -162,7 +163,12 @@ const EpisodeDetail = () => {
               />
             </div>
           </div>
-          <TitleCount link="#" text="Locations" count={locationArray.length} />
+          <TitleCount
+            link="#"
+            text="Locations"
+            count={locationArray.length}
+            clickable={false}
+          />
           <div className="episode-location-container">
             <div className="episode-locations-array">{locationArray}</div>
           </div>

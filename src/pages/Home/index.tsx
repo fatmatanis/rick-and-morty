@@ -82,6 +82,7 @@ const Home = () => {
             link="/characters"
             text="Characters"
             count={characters.data.characters.info.count}
+            clickable={true}
           />
           <div className="home-character-list">
             <CharacterList
@@ -95,6 +96,7 @@ const Home = () => {
             link="/episodes"
             text="Episodes"
             count={episodes.data.episodes.info.count}
+            clickable={true}
           />
           <div className="home-episode-list">{episode}</div>
         </div>
