@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import useComponentOpen from "../../hooks/useComponentOpen";
 import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import { ISelectprops } from "../../types/types";
 
 const Select = ({ options, filtered }: ISelectprops) => {
-  const { ref, isOpen, setIsOpen } = useComponentOpen(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const { isOpen, setIsOpen } = useComponentOpen(false, ref);
 
   const handleOpen = () => {
     setIsOpen(isOpen => !isOpen);

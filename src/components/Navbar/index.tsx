@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client";
 import _ from "lodash";
 import Search from "./Search";
+import useComponentOpen from "../../hooks/useComponentOpen";
 import { NavSearch } from "../../queries/search";
 import { ReactComponent as Digieggs } from "../../assets/digieggs.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
@@ -21,6 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [search, { data }] = useLazyQuery(NavSearch);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { isOpen, setIsOpen } = useComponentOpen(false, inputRef);
 
   const handleInputValue = (e: string) => {
     inputRef.current && (inputRef.current.value = e);
@@ -30,6 +32,7 @@ const Navbar = () => {
   const handleSearch = useCallback(
     (e: string) => {
       setSearchValue(e);
+      setIsOpen(true);
       search({
         variables: {
           filterCharacter: {
@@ -41,7 +44,7 @@ const Navbar = () => {
         }
       });
     },
-    [search]
+    [search, setIsOpen]
   );
 
   const debouncer = useMemo(
@@ -96,7 +99,9 @@ const Navbar = () => {
       <div className="navbar-dropdown">
         <div
           className={`navbar-dropdown-wrapper ${
-            dropdownArray.length > 0 && searchValue !== "" ? "focus" : ""
+            dropdownArray.length > 0 && isOpen && searchValue !== ""
+              ? "focus"
+              : ""
           } `}
         >
           <div className="navbar-dropdown-container">

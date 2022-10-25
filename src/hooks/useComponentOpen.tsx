@@ -1,23 +1,28 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const useComponentOpen = (initialIsVisible: boolean) => {
+const useComponentOpen = (
+  initialIsVisible: boolean,
+  ref: React.RefObject<HTMLElement>
+) => {
   const [isOpen, setIsOpen] = useState(initialIsVisible);
-  const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: Event) => {
-    if (ref.current && !ref.current.contains(event.target as HTMLDivElement)) {
-      setIsOpen(false);
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: Event) => {
+      if (ref.current && !ref.current.contains(event.target as HTMLElement)) {
+        setIsOpen(false);
+      }
+    },
+    [ref]
+  );
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [handleClickOutside]);
 
-  return { ref, isOpen, setIsOpen };
+  return { isOpen, setIsOpen };
 };
 
 export default useComponentOpen;
