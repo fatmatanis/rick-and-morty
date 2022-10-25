@@ -30,6 +30,11 @@
     }
 }
 
+.disable {
+    text-decoration: none;
+    pointer-events: none;
+}
+
 .title-count-container {
     display: flex;
     flex-direction: row;

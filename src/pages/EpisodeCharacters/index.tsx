@@ -40,6 +40,7 @@ const EpisodeCharacters = () => {
               link="#"
               text="Characters"
               count={charactersArr.length}
+              clickable={false}
             />
             <div className="home-character-list">
               <CharacterList

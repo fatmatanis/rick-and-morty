@@ -67,6 +67,7 @@ function SearchResults() {
                 count={charCount > 0 ? charCount : 0}
                 text="Characters"
                 link="#"
+                clickable={false}
               />
               {charResultsLength > 0 ? (
                 <div className="home-character-list">
@@ -84,6 +85,7 @@ function SearchResults() {
                 count={episodeCount > 0 ? episodeCount : 0}
                 text="Episodes"
                 link="#"
+                clickable={false}
               />
             </div>
             {episodeResultsLength > 0 ? (

@@ -154,6 +154,7 @@ function CharacterDetail() {
               link={`/characters/${data.character.id}/episodes`}
               text="Episodes"
               count={data.character.episode.length}
+              clickable={true}
             />
             <div className="character-episode-items-container">
               <div className="arrow-link">

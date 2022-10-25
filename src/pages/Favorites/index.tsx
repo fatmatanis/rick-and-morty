@@ -62,6 +62,7 @@ const Favorites = () => {
                   link="#"
                   text="Characters"
                   count={charactersList.length}
+                  clickable={false}
                 />
                 <div className="home-character-list">
                   <CharacterList characters={charactersList} cardCount={0} />
@@ -78,6 +79,7 @@ const Favorites = () => {
                   link="#"
                   text="Episodes"
                   count={episodeListArr.length}
+                  clickable={false}
                 />
                 <div className="home-episode-list">{episodeListArr}</div>
               </div>

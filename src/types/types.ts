@@ -13,6 +13,7 @@ export interface ITitleCountProps {
   link: string;
   text: string;
   count: number;
+  clickable: boolean;
 }
 
 export interface IEpisodeCardProps {
