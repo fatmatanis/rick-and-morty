@@ -20,6 +20,7 @@ function CharacterDetail() {
     []
   );
   const [array, setArray] = useState<JSX.Element[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [episodes, setEpisodes] = React.useState<JSX.Element[]>([]);
   const {
     charactersList,
@@ -33,6 +34,20 @@ function CharacterDetail() {
   const pageUrlId = location.pathname.split("/").slice(2).toString();
   const { loading, error, data } = useQuery(GetCharacter, {
     variables: { id: pageUrlId }
+  });
+
+  const carouselInfiniteScroll = () => {
+    if (currentIndex === data.character.episode.length - 1) {
+      return setCurrentIndex(0);
+    }
+    return setCurrentIndex(currentIndex + 1);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      carouselInfiniteScroll();
+    }, 3000);
+    return () => clearInterval(interval);
   });
 
   const addEpisodeFavHandler = useCallback(
@@ -156,13 +171,15 @@ function CharacterDetail() {
               count={data.character.episode.length}
             />
             <div className="character-episode-items-container">
-              <div className="arrow-link">
-                <div className="arrow-link-item">
-                  <Link to={`/characters/${data.character.id}/episodes`}>
-                    <RightArrow />
-                  </Link>
+              {data.character.episode.length > 3 && (
+                <div className="arrow-link">
+                  <div className="arrow-link-item">
+                    <button onClick={carouselInfiniteScroll}>
+                      <RightArrow />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="character-episode-items">{episodes}</div>
             </div>
           </div>
