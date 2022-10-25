@@ -18,9 +18,26 @@ import { ICharacter, IEpisode } from "../../types/types";
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [dropdownArray, setDropdownArray] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [search, { data }] = useLazyQuery(NavSearch);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClickOutside = (event: Event) => {
+    if (
+      inputRef.current &&
+      !inputRef.current.contains(event.target as HTMLInputElement)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
   const handleInputValue = (e: string) => {
     inputRef.current && (inputRef.current.value = e);
@@ -30,6 +47,7 @@ const Navbar = () => {
   const handleSearch = useCallback(
     (e: string) => {
       setSearchValue(e);
+      setIsOpen(isOpen => !isOpen);
       search({
         variables: {
           filterCharacter: {
@@ -96,7 +114,9 @@ const Navbar = () => {
       <div className="navbar-dropdown">
         <div
           className={`navbar-dropdown-wrapper ${
-            dropdownArray.length > 0 && searchValue !== "" ? "focus" : ""
+            dropdownArray.length > 0 && isOpen && searchValue !== ""
+              ? "focus"
+              : ""
           } `}
         >
           <div className="navbar-dropdown-container">
