@@ -47,7 +47,7 @@ const Navbar = () => {
   const handleSearch = useCallback(
     (e: string) => {
       setSearchValue(e);
-      setIsOpen(isOpen => !isOpen);
+      setIsOpen(true);
       search({
         variables: {
           filterCharacter: {
