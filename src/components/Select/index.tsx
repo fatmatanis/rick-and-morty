@@ -12,6 +12,14 @@ const Select = ({ options, filtered }: ISelectprops) => {
     setIsOpen(isOpen => !isOpen);
   };
 
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    handleSelect: (event: React.MouseEvent<HTMLButtonElement>) => void
+  ) => {
+    handleSelect(e);
+    setIsOpen(false);
+  };
+
   return (
     <div className="select-wrapper" ref={ref}>
       <button className="select-button" onClick={handleOpen}>
@@ -24,7 +32,9 @@ const Select = ({ options, filtered }: ISelectprops) => {
             className="select-item "
             key={value}
             value={value}
-            onClick={handleSelect}
+            onClick={e => {
+              handleClick(e, handleSelect);
+            }}
           >
             {label}
           </button>
