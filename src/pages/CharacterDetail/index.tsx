@@ -35,11 +35,10 @@ function CharacterDetail() {
     variables: { id: pageUrlId }
   });
 
-  const carouselInfiniteScroll = () => {
-    if (currentIndex === data.character.episode.length - 1) {
-      return setCurrentIndex(0);
+  const carouselNext = () => {
+    if (currentIndex < data.character.episode.length - 1) {
+      setCurrentIndex(prev => prev + 1);
     }
-    return setCurrentIndex(currentIndex + 1);
   };
 
   const addEpisodeFavHandler = useCallback(
@@ -164,15 +163,13 @@ function CharacterDetail() {
               {data.character.episode.length > 3 && (
                 <div className="arrow-link">
                   <div className="arrow-link-item">
-                    <button onClick={carouselInfiniteScroll}>
+                    <button onClick={carouselNext}>
                       <RightArrow />
                     </button>
                   </div>
                 </div>
               )}
-              <div className="character-episode-items">
-                {episodes.slice(0, 3)}
-              </div>
+              <div className="character-episode-items">{episodes}</div>
             </div>
           </div>
         </div>

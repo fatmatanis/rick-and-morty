@@ -115,9 +115,7 @@ const CharacterEpisodes = () => {
             />
             <Select options={options} filtered={selected} />
           </div>
-          <div className="character-episodes-list-episodes">
-            <div className="character-episodes-list">{episodes}</div>
-          </div>
+          <div className="character-episodes-list-episodes">{episodes}</div>
         </div>
       </div>
     </div>
