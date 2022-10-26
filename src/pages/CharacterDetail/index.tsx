@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 
 import { useQuery } from "@apollo/client";
@@ -19,7 +20,6 @@ function CharacterDetail() {
     []
   );
   const [array, setArray] = useState<JSX.Element[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [episodes, setEpisodes] = React.useState<JSX.Element[]>([]);
   const {
     charactersList,
@@ -34,12 +34,6 @@ function CharacterDetail() {
   const { loading, error, data } = useQuery(GetCharacter, {
     variables: { id: pageUrlId }
   });
-
-  const carouselNext = () => {
-    if (currentIndex < data.character.episode.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-    }
-  };
 
   const addEpisodeFavHandler = useCallback(
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -70,28 +64,30 @@ function CharacterDetail() {
       ];
       setCharacterDetail(characterDetailArr);
 
-      const episodesArr = data.character.episode.map((episode: IEpisode) => {
-        const isFav =
-          episodesList.length > 0 &&
-          episodesList.some(found => found.id === episode.id);
-        return (
-          <div className="character-episode-list" key={episode.id}>
-            <EpisodeCard
-              id={episode.id}
-              season={episode.episode}
-              date={episode.air_date}
-              title={episode.name}
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
-              favorited={isFav}
-              toggleFavorites={() =>
-                !isFav
-                  ? addEpisodeFavHandler({ ...episode })
-                  : deleteEpisodeFavHandler(episode.id)
-              }
-            />
-          </div>
-        );
-      });
+      const episodesArr = data.character.episode
+        .slice(0, 3)
+        .map((episode: IEpisode) => {
+          const isFav =
+            episodesList.length > 0 &&
+            episodesList.some(found => found.id === episode.id);
+          return (
+            <div className="character-episode-list" key={episode.id}>
+              <EpisodeCard
+                id={episode.id}
+                season={episode.episode}
+                date={episode.air_date}
+                title={episode.name}
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore..."
+                favorited={isFav}
+                toggleFavorites={() =>
+                  !isFav
+                    ? addEpisodeFavHandler({ ...episode })
+                    : deleteEpisodeFavHandler(episode.id)
+                }
+              />
+            </div>
+          );
+        });
       setEpisodes(episodesArr);
     }
   }, [addEpisodeFavHandler, data, deleteEpisodeFavHandler, episodesList]);
@@ -160,15 +156,13 @@ function CharacterDetail() {
               count={data.character.episode.length}
             />
             <div className="character-episode-items-container">
-              {data.character.episode.length > 3 && (
-                <div className="arrow-link">
-                  <div className="arrow-link-item">
-                    <button onClick={carouselNext}>
-                      <RightArrow />
-                    </button>
-                  </div>
+              <div className="arrow-link">
+                <div className="arrow-link-item">
+                  <Link to={`/characters/${data.character.id}/episodes`}>
+                    <RightArrow />
+                  </Link>
                 </div>
-              )}
+              </div>
               <div className="character-episode-items">{episodes}</div>
             </div>
           </div>
