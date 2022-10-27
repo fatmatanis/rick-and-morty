@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 
 import { useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,16 +13,10 @@ const SearchEpisodeResults = () => {
   const [episode, setEpisode] = useState<JSX.Element[]>([]);
   const { episodesList, addEpisodeFavorites, deleteEpisodeFavorites } =
     useContext(FavoritesContext);
-  const location = useLocation();
-  const locationSearch = location.search
-    .split("?")
-    .slice(1)
-    .toString()
-    .split("%20")
-    .join(" ");
+  const { search } = useParams();
   const { data, loading, error, fetchMore } = useQuery(NavSearch, {
     variables: {
-      filterEpisode: { name: locationSearch },
+      filterEpisode: { name: search },
       page: 1
     }
   });

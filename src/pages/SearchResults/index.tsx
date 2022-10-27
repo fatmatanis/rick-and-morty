@@ -79,8 +79,7 @@ function SearchResults() {
                 count={charCount > 0 ? charCount : 0}
                 text="Characters"
                 link={{
-                  pathname: `/search/characters/`,
-                  search: searchQuery?.toString()
+                  pathname: `/search/characters/${searchQuery?.toString()}`
                 }}
                 clickable={true}
               />
@@ -100,8 +99,7 @@ function SearchResults() {
                 count={episodeCount > 0 ? episodeCount : 0}
                 text="Episodes"
                 link={{
-                  pathname: `/search/episodes/`,
-                  search: searchQuery?.toString()
+                  pathname: `/search/episodes/${searchQuery?.toString()}`
                 }}
                 clickable={true}
               />

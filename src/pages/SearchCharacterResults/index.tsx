@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,16 +8,10 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import CharacterList from "../../components/CharacterList";
 
 const SearchCharacterResults = () => {
-  const location = useLocation();
-  const locationSearch = location.search
-    .split("?")
-    .slice(1)
-    .toString()
-    .split("%20")
-    .join(" ");
+  const { search } = useParams();
   const { data, loading, error, fetchMore } = useQuery(NavSearch, {
     variables: {
-      filterCharacter: { name: locationSearch },
+      filterCharacter: { name: search },
       page: 1
     }
   });

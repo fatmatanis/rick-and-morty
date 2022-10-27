@@ -36,8 +36,14 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/search/characters" element={<SearchCharacterResults />} />
-        <Route path="/search/episodes" element={<SearchEpisodeResults />} />
+        <Route
+          path="/search/characters/:search"
+          element={<SearchCharacterResults />}
+        />
+        <Route
+          path="/search/episodes/:search"
+          element={<SearchEpisodeResults />}
+        />
       </Routes>
     </BrowserRouter>
   );
