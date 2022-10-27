@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState
 } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { createSearchParams, Link, useNavigate } from "react-router-dom";
 
 import { useLazyQuery } from "@apollo/client";
 import _ from "lodash";
@@ -65,7 +65,10 @@ const Navbar = () => {
       setDropdownArray(
         (dropdownCharsArray as []).concat(dropdownEpisodesArray as [])
       );
-      navigate("/search", { state: data });
+      navigate({
+        pathname: "/search",
+        search: createSearchParams({ q: searchValue }).toString()
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);

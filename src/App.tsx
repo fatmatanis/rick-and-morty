@@ -12,6 +12,8 @@ import SearchResults from "./pages/SearchResults";
 import Episodes from "./pages/Episodes";
 import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
+import SearchCharacterResults from "./pages/SearchCharacterResults";
+import SearchEpisodeResults from "./pages/SearchEpisodeResults";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/search/characters" element={<SearchCharacterResults />} />
+        <Route path="/search/episodes" element={<SearchEpisodeResults />} />
       </Routes>
     </BrowserRouter>
   );

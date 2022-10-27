@@ -1,16 +1,26 @@
 import React, { useCallback, useContext } from "react";
-import { useLocation } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
+import { useQuery } from "@apollo/client";
 import { FavoritesContext } from "../../store/favorites-contex";
+import { NavSearch } from "../../queries/search";
 import EpisodeCard from "../../components/EpisodeCard";
 import TitleCount from "../../components/TitleCount";
 import CharacterList from "../../components/CharacterList";
-import { IEpisode, ISearchData } from "../../types/types";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import { IEpisode } from "../../types/types";
 
 function SearchResults() {
   const { episodesList, addEpisodeFavorites, deleteEpisodeFavorites } =
     useContext(FavoritesContext);
-  const { state } = useLocation();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q");
+  const search = useQuery(NavSearch, {
+    variables: {
+      filterCharacter: { name: searchQuery },
+      filterEpisode: { name: searchQuery }
+    }
+  });
 
   const addEpisodeFavHandler = useCallback(
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -25,7 +35,7 @@ function SearchResults() {
     [deleteEpisodeFavorites]
   );
 
-  const episodeArray = (state as ISearchData)?.episodes?.results.map(
+  const episodeArray = search.data?.episodes?.results.map(
     (episode: IEpisode) => {
       const isFav =
         episodesList.length > 0 &&
@@ -50,11 +60,13 @@ function SearchResults() {
     }
   );
 
-  const charResultsLength = (state as ISearchData)?.characters?.results?.length;
-  const episodeResultsLength = (state as ISearchData)?.episodes?.results
-    ?.length;
-  const charCount = (state as ISearchData)?.characters?.info?.count;
-  const episodeCount = (state as ISearchData)?.episodes?.info?.count;
+  const charResultsLength = search.data?.characters?.results?.length;
+  const episodeResultsLength = search.data?.episodes?.results?.length;
+  const charCount = search.data?.characters?.info?.count;
+  const episodeCount = search.data?.episodes?.info?.count;
+
+  if (search.loading) return <LoadingSpinner loadingStyle="arsenic" />;
+  if (search.error) return <p className="error">Error :(</p>;
 
   return (
     <>
@@ -66,13 +78,16 @@ function SearchResults() {
               <TitleCount
                 count={charCount > 0 ? charCount : 0}
                 text="Characters"
-                link="#"
-                clickable={false}
+                link={{
+                  pathname: `/search/characters/`,
+                  search: searchQuery?.toString()
+                }}
+                clickable={true}
               />
               {charResultsLength > 0 ? (
                 <div className="home-character-list">
                   <CharacterList
-                    characters={(state as ISearchData)?.characters?.results}
+                    characters={search.data?.characters?.results}
                     cardCount={0}
                   />
                 </div>
@@ -84,8 +99,11 @@ function SearchResults() {
               <TitleCount
                 count={episodeCount > 0 ? episodeCount : 0}
                 text="Episodes"
-                link="#"
-                clickable={false}
+                link={{
+                  pathname: `/search/episodes/`,
+                  search: searchQuery?.toString()
+                }}
+                clickable={true}
               />
             </div>
             {episodeResultsLength > 0 ? (
