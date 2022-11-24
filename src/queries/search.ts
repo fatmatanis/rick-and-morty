@@ -2,10 +2,11 @@ import { gql } from "@apollo/client";
 
 export const NavSearch = gql`
   query Characters(
-    $filterCharacter: FilterCharacter!
-    $filterEpisode: FilterEpisode!
+    $filterCharacter: FilterCharacter
+    $filterEpisode: FilterEpisode
+    $page: Int
   ) {
-    characters(filter: $filterCharacter) {
+    characters(filter: $filterCharacter, page: $page) {
       info {
         count
         pages
@@ -29,7 +30,7 @@ export const NavSearch = gql`
         created
       }
     }
-    episodes(filter: $filterEpisode) {
+    episodes(filter: $filterEpisode, page: $page) {
       info {
         count
         pages

@@ -1,3 +1,5 @@
+import { Path } from "react-router";
+
 export interface INavbarProps {
   className: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -8,9 +10,8 @@ export interface ICharacterDetailCardProps {
   title: string;
   text: string;
 }
-
 export interface ITitleCountProps {
-  link: string;
+  link: string | Partial<Path>;
   text: string;
   count: number;
   clickable: boolean;
