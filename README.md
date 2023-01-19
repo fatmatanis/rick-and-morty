@@ -1,4 +1,6 @@
-React app Rick And Morty with list characters and episodes. Show selected element, search, infinite scroll, add favorites episodes and characters…
+React app Rick And Morty with list characters and episodes. Show selected element, search characters and episodes, infinite scroll, add favorites episodes and characters…
+
+------
 
 # Getting Started with Create React App
 
